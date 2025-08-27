@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pontos - Card Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Pontos</h1>
+        <p>Insira o nome de cada carta, um por linha. Inclua as cartas da mão e as que afetam a pontuação (como as descartadas).</p>
+        
+        <label for="cartasInput">Cartas na Mão:</label>
+        <textarea id="cartasInput" placeholder="Ex:&#10;Cruelrine&#10;Caretapool&#10;MaCaribe&#10;..."></textarea>
+        
+        <label for="interacoesInput">Ações do Jogador e Cartas Externas (opcional):</label>
+        <textarea id="interacoesInput" placeholder="Ex:&#10;fez a 'pose'&#10;estava bebendo água&#10;Descartada: Come nada&#10;..."></textarea>
+        
+        <button onclick="calcularPontuacao()">Calcular</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
