@@ -1,27 +1,89 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Pontos - Card Game</title>
+    <title>Calculadora de Pontos T5</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Calculadora de Pontos</h1>
-        <p>Insira o nome de cada carta, um por linha. Inclua as cartas da mão e as que afetam a pontuação (como as descartadas).</p>
-        
-        <label for="cartasInput">Cartas na Mão:</label>
-        <textarea id="cartasInput" placeholder="Ex:&#10;Cruelrine&#10;Caretapool&#10;MaCaribe&#10;..."></textarea>
-        
-        <label for="interacoesInput">Ações do Jogador e Cartas Externas (opcional):</label>
-        <textarea id="interacoesInput" placeholder="Ex:&#10;fez a 'pose'&#10;estava bebendo água&#10;Descartada: Come nada&#10;..."></textarea>
-        
-        <button onclick="calcularPontuacao()">Calcular</button>
-        
-        <div id="resultado"></div>
-    </div>
+        <p>Insira as cartas da mão, separadas por vírgula.</p>
 
-    <script src="script.js"></script>
-</body>
-</html>
+        <label for="cartas-jogador">Cartas do Jogador:</label>
+        <textarea id="cartas-jogador"></textarea>
+
+        <label for="acoes-jogador">Ações do Jogador:</label>
+        <div id="acoes-jogador-checklist">
+            <input type="checkbox" id="acao-pose" data-acao="Fez a pose">
+            <label for="acao-pose">Fez a "pose"</label><br>
+
+            <input type="checkbox" id="acao-bebendo-agua" data-acao="Está bebendo água">
+            <label for="acao-bebendo-agua">Está bebendo água</label><br>
+
+            <input type="checkbox" id="acao-chinelo" data-acao="Está de Chinelo">
+            <label for="acao-chinelo">Está de Chinelo</label><br>
+
+            <input type="checkbox" id="acao-tomando-matte" data-acao="Está tomando Matte">
+            <label for="acao-tomando-matte">Está tomando Matte</label><br>
+
+            <input type="checkbox" id="acao-vendo-corpo-agua" data-acao="Está vendo um grande Corpo de Água ou o Corcovado">
+            <label for="acao-vendo-corpo-agua">Está vendo um grande Corpo de Água ou o Corcovado</label><br>
+
+            <input type="checkbox" id="acao-comendo-caranguejo" data-acao="Está comendo Caranguejo ou ter Pó no pé/na roupa">
+            <label for="acao-comendo-caranguejo">Está comendo Caranguejo ou ter Pó no pé/na roupa</label><br>
+            
+            <input type="checkbox" id="acao-pegando-sol" data-acao="Está pegando Sol">
+            <label for="acao-pegando-sol">Está pegando Sol</label><br>
+
+            <input type="checkbox" id="acao-camiseta" data-acao="Está de Camiseta">
+            <label for="acao-camiseta">Está de Camiseta</label><br>
+            
+            <input type="checkbox" id="acao-bota" data-acao="Está de Bota">
+            <label for="acao-bota">Está de Bota</label><br>
+            
+            <input type="checkbox" id="acao-acrobacia" data-acao="Fez uma acrobacia">
+            <label for="acao-acrobacia">Fez uma acrobacia</label><br>
+            
+            <input type="checkbox" id="acao-chorar-futebol" data-acao="Chorou no futebol">
+            <label for="acao-chorar-futebol">Chorou no futebol</label><br>
+            
+            <input type="checkbox" id="acao-nao-tentar-valor" data-acao="Não tentou um valor aproximado">
+            <label for="acao-nao-tentar-valor">Não tentou um valor aproximado</label><br>
+            
+            <input type="checkbox" id="acao-tirar-barba" data-acao="Tirou a barba">
+            <label for="acao-tirar-barba">Tirou a barba</label><br>
+
+            <input type="checkbox" id="acao-repetir-explicacao" data-acao="Teve que repetir a explicação da matéria">
+            <label for="acao-repetir-explicacao">Teve que repetir a explicação da matéria</label><br>
+
+            <input type="checkbox" id="acao-cantar" data-acao="Cantou por ao menos 10s">
+            <label for="acao-cantar">Cantou por ao menos 10s</label><br>
+            
+            <input type="checkbox" id="acao-nao-voou" data-acao="Não voou nos últimos/próximos 7 dias">
+            <label for="acao-nao-voou">Não voou nos últimos/próximos 7 dias</label><br>
+            
+            <input type="checkbox" id="acao-cara-gerente" data-acao="Fez 'Cara de Gerente'">
+            <label for="acao-cara-gerente">Fez "Cara de Gerente"</label><br>
+            
+            <input type="checkbox" id="acao-nome-composto" data-acao="Tem nome composto">
+            <label for="acao-nome-composto">Tem nome composto</label><br>
+            
+            <input type="checkbox" id="acao-nao-treinou" data-acao="Não treinou hoje">
+            <label for="acao-nao-treinou">Não treinou hoje</label><br>
+            
+            <input type="checkbox" id="acao-objeto-roxo" data-acao="Está com qualquer objeto na cor roxa">
+            <label for="acao-objeto-roxo">Está com qualquer objeto na cor roxa</label><br>
+            
+            <input type="checkbox" id="acao-nao-bermuda-regata" data-acao="Não está de Bermuda e/ou Regata">
+            <label for="acao-nao-bermuda-regata">Não está de Bermuda e/ou Regata</label><br>
+            
+            <input type="checkbox" id="acao-nunca-narcos" data-acao="Nunca assistiu à série Narcos">
+            <label for="acao-nunca-narcos">Nunca assistiu à série Narcos</label><br>
+            
+            <input type="checkbox" id="acao-nao-imitar-personagem" data-acao="Não imitou o Personagem">
+            <label for="acao-nao-imitar-personagem">Não imitou o Personagem</label><br>
+            
+            <input type="checkbox" id="acao-onibus-viagem" data-acao="Veio de ônibus de viagem">
+            <label for="acao-onibus-viagem">
