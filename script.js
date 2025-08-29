@@ -1,917 +1,311 @@
-// A base de dados completa das cartas do jogo.
+// Tabela de Cartas e Pontuações - Tabela completa, fornecida pelo usuário.
+
 const cartas = [
-    { nome: "Presencial de Outra Cidade", pontos: 0, tipo: "Coringa", tag: null, bonus: "Considere até dois Locais como apenas um", penalidade: null },
-    { nome: "Mochila Petrobras", pontos: 0, tipo: "Coringa", tag: null, bonus: "Ao fim do jogo, pegue até um Item (carta extra) da área de descarte", penalidade: "-25 com Disney de Janeiro" },
-    { nome: "PC/Richard", pontos: 0, tipo: "Coringa", tag: null, bonus: "Elimina todas as penalidades se tiver Curso de Formação", penalidade: null },
-    { nome: "Nível", pontos: 0, tipo: "Coringa", tag: null, bonus: "+10 para cada Vix em Pó e Festa Anual", penalidade: "Anulada com Curso de Formação" },
-    { nome: "Não pode ser real", pontos: 0, tipo: "Coringa", tag: null, bonus: "Anula uma penalidade", penalidade: null },
-    { nome: "T5 Honorário", pontos: 0, tipo: "Coringa", tag: null, bonus: "Ao fim do jogo, pegue até um Personagem (carta extra) da área de descarte", penalidade: null },
-    { nome: "Carona", pontos: 0, tipo: "Coringa", tag: null, bonus: "Você pode ter até cinco Personagens", penalidade: null },
-    { nome: "Lista de Presença", pontos: 0, tipo: "Coringa", tag: null, bonus: "Você pode ter até seis Personagens", penalidade: null },
-    { nome: "Amigo do Raul", pontos: 0, tipo: "Coringa", tag: null, bonus: "Pode duplicar qualquer Personagem do jogo", penalidade: null },
-    { nome: "Modelo Híbrido", pontos: 0, tipo: "Coringa", tag: null, bonus: "Considere Presencial e Home-Office como apenas um Evento", penalidade: null },
-    { nome: "CURSO DE FORMAÇÃO", pontos: 40, tipo: "Evento", tag: null, bonus: "+10 com Disney de Janeiro OU PC/Richard OU Lista de Presença", penalidade: null },
-    { nome: "CHÁ DE FRALDAS", pontos: 40, tipo: "Evento", tag: null, bonus: null, penalidade: "-10 sem Pacote de Fraldas; Anulada sem Premium Care" },
-    { nome: "VISITA TÉCNICA", pontos: 40, tipo: "Evento", tag: null, bonus: null, penalidade: "-10 a menos que tenha EPI Completo" },
-    { nome: "FESTA ANUAL", pontos: 40, tipo: "Evento", tag: "Social", bonus: "+10 com qualquer Local ou com T5 Honorário", penalidade: null },
-    { nome: "ALMOÇÃO", pontos: 40, tipo: "Evento", tag: "Social", bonus: "+20 com MaCaribe", penalidade: null },
-    { nome: "INVADE HOUSE", pontos: 40, tipo: "Evento", tag: "Social", bonus: "+20 com MaCaribe", penalidade: null },
-    { nome: "COFFEE DA CAROL", pontos: 40, tipo: "Evento", tag: null, bonus: "+15 para cada Comprovadamente Perdida e Chá de Fraldas", penalidade: "-15 sem Café" },
-    { nome: "ANIVERSÁRIO DO ANDERSON", pontos: 40, tipo: "Evento", tag: null, bonus: "Não conta como um Evento", penalidade: null },
-    { nome: "PRESENCIAL", pontos: 40, tipo: "Evento", tag: null, bonus: null, penalidade: "-10 com Pato Migratório" },
-    { nome: "HOME-OFFICE", pontos: 40, tipo: "Evento", tag: null, bonus: null, penalidade: "-10 com Pato Migratório" },
-    { nome: "Carregador de Notebook", pontos: 5, tipo: "Item/Meme", tag: "Perdido", bonus: null, penalidade: null },
-    { nome: "Aplausos Constrangedores", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+5 para cada Personagem, Aniversário do Anderson, Curso de Formação", penalidade: null },
-    { nome: "Comprovante", pontos: 5, tipo: "Item/Meme", tag: "Perdido", bonus: null, penalidade: null },
-    { nome: "Contusão no Joelho", pontos: 10, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "Anula um Personagem exceto Joabe-se quem Puder" },
-    { nome: "Calebito Vai dar Certo", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+5 para cada Personagem", penalidade: "-10 para cada Ana Pimentão e Farmácia" },
-    { nome: "BassaNews", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 com Bassani Sindical", penalidade: "-15 se hoje é sexta-feira" },
-    { nome: "Feedback", pontos: 20, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-5 para cada Personagem, exceto Gerente Feedback Jr" },
-    { nome: "Kit Churrasco", pontos: 5, tipo: "Item/Meme", tag: "Alimento", bonus: "+10 para cada Invade House, Aniversário do Anderson, Festa Anual", penalidade: null },
-    { nome: "Dados Conflitantes", pontos: 5, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-10 com Curso de Formação ou Aniversário do Anderson" },
-    { nome: "Não se preocupe com prova", pontos: 10, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-5 para cada Personagem se tiver Curso de Formação" },
-    { nome: "Segura, Peão!", pontos: 14, tipo: "Item/Meme", tag: null, bonus: "+63 com MaCaribe ou +53 com Vix em Pó ou +43 com Grande Nordeste", penalidade: null },
-    { nome: "Pão de Queijo", pontos: 5, tipo: "Item/Meme", tag: "Alimento", bonus: "+5 para cada Evento", penalidade: null },
-    { nome: "Pato Migratório", pontos: 15, tipo: "Item/Meme", tag: null, bonus: "+10 com cada Invade House, Aniversário do Anderson, Almoção, Festa Anual", penalidade: null },
-    { nome: "Ordem de Grandeza", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 com Número Mágico", penalidade: null },
-    { nome: "Resumo da Carol", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 para cada Personagem se tiver Curso de Formação", penalidade: null },
-    { nome: "Bolo de Aniversário", pontos: 5, tipo: "Item/Meme", tag: "Trigo", bonus: "+10 com qualquer Evento exceto Curso de Formação, Presencial e Home-Office", penalidade: null },
-    { nome: "Check-list", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+5 para cada Aniversário do Anderson, Curso de Formação, Home-Office, Presencial", penalidade: null },
-    { nome: "Câmera Ligada", pontos: 20, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-5 para cada Personagem, exceto Cameraman" },
-    { nome: "Day Use", pontos: 5, tipo: "Item/Meme", tag: "Presente", bonus: null, penalidade: "-5 para cada Personagem exceto Segue o Link e Ana Pimentão" },
-    { nome: "Piada Devastadora", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+25 para cada Evento", penalidade: null },
-    { nome: "Filtro Solar", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 Gasparzinho Sundown", penalidade: null },
-    { nome: "EPI Completo", pontos: 5, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-25 com Pergunta Sem Timing" },
-    { nome: "Strip no Jet de Swap", pontos: 30, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-5 para cada Personagem" },
-    { nome: "Pergunta Sem Timing", pontos: 5, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-15 para cada Curso de Formação" },
-    { nome: "Tava Embarcado?", pontos: 30, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-5 para cada Personagem" },
-    { nome: "Jaqueta no Verão", pontos: 5, tipo: "Item/Meme", tag: "Presente", bonus: "+10 com PC/Richard", penalidade: null },
-    { nome: "Enquete", pontos: 25, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-10 para cada Evento e -5 para cada Presente" },
-    { nome: "Café", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 com Coffee da Carol ou Curso de Formação ou Presencial ou Aniversário do Anderson", penalidade: null },
-    { nome: "Discussão Pós-prova", pontos: 30, tipo: "Item/Meme", tag: null, bonus: null, penalidade: "-10 para cada Personagem" },
-    { nome: "Garrafa", pontos: 5, tipo: "Item/Meme", tag: "Perdido", bonus: null, penalidade: null },
-    { nome: "Chaveiro Ofensivo", pontos: 15, tipo: "Item/Meme", tag: "Presente", bonus: null, penalidade: "Anula PC/Richard" },
-    { nome: "Herbalife", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 para cada Ana Pimentão, Clara Herculino, Prefeito Pimenta", penalidade: null },
-    { nome: "Pacote de Fralda", pontos: 10, tipo: "Item/Meme", tag: null, bonus: "+10 com Chá de Fraldas", penalidade: "-5 para cada Personagem exceto Premium Care" },
-    { nome: "É tudo a mesma Coisa", pontos: 5, tipo: "Item/Meme", tag: null, bonus: "+10 para as duplas Ana Pimentão e Comprovadamente Perdida, Caixeta de Zócolo e Zócolo na Caixeta, Uivo da Varanda e Tô Em Todas, Sósia do Caio e Amigo do Raul", penalidade: null },
-    { nome: "Disney de Janeiro", pontos: 60, tipo: "Local", tag: null, bonus: "+10 se o jogador estiver de Chinelo ou Tomando Matte", penalidade: null },
-    { nome: "Nikiti na Panela", pontos: 60, tipo: "Local", tag: null, bonus: "+10 se o jogador estiver vendo um grande Corpo de Água ou o Corcovado", penalidade: null },
-    { nome: "Vix em Pó", pontos: 60, tipo: "Local", tag: null, bonus: "+10 se o jogador estiver comendo Caranguejo ou tiver Pó no pé/na roupa", penalidade: null },
-    { nome: "Grande Nordeste", pontos: 60, tipo: "Local", tag: null, bonus: "+10 se o jogador estiver pegando Sol ou bebendo Água", penalidade: null },
-    { nome: "MaCaribe", pontos: 60, tipo: "Local", tag: "Social", bonus: "+10 se o jogador estiver de Camiseta e pode ter até três Eventos", penalidade: null },
-    { nome: "Itabompraí", pontos: 50, tipo: "Local", tag: null, bonus: "+20 se o jogador estiver de Bota ou com EPI Completo", penalidade: null },
-    { nome: "Vereadora", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 com cada outro Personagem", penalidade: "-10 com qualquer Local, exceto Disney de Janeiro" },
-    { nome: "MagnâniMO", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 se o jogador fizer uma acrobacia", penalidade: "-10 se o jogador chorar no futebol" },
-    { nome: "Rainha do Kahoot", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Kahoot", penalidade: "-10 para cada Social" },
-    { nome: "Caô Amigo", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+15 com Amigo do Raul, +5 para cada Social", penalidade: "-10 sem triplo R (Telepata de Ni + MãeCaé Tips)" },
-    { nome: "História Sem Fim", pontos: 20, tipo: "Personagem", tag: null, bonus: "+80 com Procura Sem Fim", penalidade: "-10 com menos de 3 Renans" },
-    { nome: "MãeCaé Tips", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com triplo R (Telepata de Ni + Caô Amigo)", penalidade: "-10 com qualquer Social" },
-    { nome: "Scheid Filho", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Kahoot e +15 para cada Filho", penalidade: "-15 para cada Social" },
-    { nome: "Tia Clarisse", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 com qualquer Social" },
-    { nome: "Comprovadamente Perdida", pontos: 20, tipo: "Personagem", tag: "Perdido", bonus: "+30 se tiver os três Perdidos", penalidade: "-10 com menos de três Perdidos" },
-    { nome: "Milionário Disfarçado", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Contador de Moedas", penalidade: "-10 com Segura, Peão!" },
-    { nome: "Bassani Sindical", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Dados Conflitantes", penalidade: "-10 para cada Social, MaCaribe" },
-    { nome: "Feliz Aniversário", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para cada Bolo, Evento, MaCaribe, Check-list", penalidade: "-10 com Pergunta sem Timing ou sem Social" },
-    { nome: "Sósia do Caio", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro ou +5 com MaCaribe", penalidade: "-10 com Café" },
-    { nome: "Estratégia Cruel", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Vix em Pó", penalidade: "-10 para cada Social" },
-    { nome: "Tromps dos Magos", pontos: 20, tipo: "Personagem", tag: "Soninho", bonus: "+10 para cada Nikiti na Panela, outro Soninho", penalidade: "-10 para cada Social" },
-    { nome: "Número Mágico", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Ordem de Grandeza", penalidade: "-10 se o jogador não tentar um valor aproximado" },
-    { nome: "Prefeito Pimenta", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para cada Nikiti na Panela e Carona", penalidade: "-10 para cada Social" },
-    { nome: "Guitarra de Suprimentos", pontos: 20, tipo: "Personagem", tag: null, bonus: "+80 com PDV e +10 com General Trigus Aurelius", penalidade: "-10 para cada Social" },
-    { nome: "Joabe-se Quem Puder", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Lista de Presença", penalidade: "-10 para cada Social" },
-    { nome: "Super Sincera", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Guitarra de Suprimentos", penalidade: "-10 com cada Social" },
-    { nome: "Vamos Marcar", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Pato Migratório", penalidade: "-10 para cada Social" },
-    { nome: "Colheita Feliz", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Pato Migratório e +5 para cada Shinobi Campista, PETagoga e Vereadora", penalidade: "-10 com qualquer Social" },
-    { nome: "Raulzito", pontos: 20, tipo: "Personagem", tag: "PetroBanda", bonus: "+10 com outro PetroBanda", penalidade: "-10 com qualquer Social" },
-    { nome: "Renan Preso", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Pergunta Sem Timing, +5 com Renan Livre Leve", penalidade: "-10 com qualquer Social" },
-    { nome: "Super Mario on IceCream", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com qualquer Não pode ser real, Calebito Vai dar Certo", penalidade: "-10 com Wario" },
-    { nome: "Telepata de Ni", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com triplo R (Caô Amigo + MãeCae Tips)", penalidade: "-10 com Rita Lee" },
-    { nome: "Espião do PC", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Apresentação do Projeto", penalidade: "-5 para cada outro Personagem" },
-    { nome: "Bruce Weiner", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Alfred", penalidade: "-10 sem Labrador" },
-    { nome: "CaretaPool", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Cruelrine", penalidade: "-10 com Pato Migratório" },
-    { nome: "Série B", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Vix em Pó", penalidade: "-10 para cada Social" },
-    { nome: "Média de Ouro", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para cada Curso de Formação, Nikiti na Panela", penalidade: "-10 para cada Social" },
-    { nome: "Clara Herculino", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Nikiti na Panela", penalidade: "-10 para cada Social, Enquete" },
-    { nome: "Jorge Veludo", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Disney de Janeiro", penalidade: "-10 para cada Social" },
-    { nome: "Farmácia", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 para cada outro Personagem", penalidade: null },
-    { nome: "Soneca Russa", pontos: 20, tipo: "Personagem", tag: "Soninho", bonus: "+10 para cada Disney de Janeiro, outro Soninho", penalidade: "-10 com Pergunta Sem Timing" },
-    { nome: "Tô Em Todas", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para qualquer Evento E Local", penalidade: "-15 para Aplausos Constrangedores" },
-    { nome: "Pai do Regato", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Camiseto", penalidade: "-10 para cada Social" },
-    { nome: "Praieira de Minas", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Vix em Pó e +10 com Série B", penalidade: "-10 para cada Social" },
-    { nome: "Solução Caseira", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para cada Aniversário do Anderson, Festa Anual", penalidade: "-10 se tirar a barba" },
-    { nome: "Rei da Rifa", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Rifa e +10 com Curso de Formação", penalidade: "-10 se tiver que repetir a explicação da matéria" },
-    { nome: "Aí Vem O Desespero", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Discussão Pós-prova", penalidade: "-10 com cada Social, MaCaribe" },
-    { nome: "ServiceNat", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 para cada outro Personagem; +10 com Nikiti na Panela", penalidade: "-10 para cada Social" },
-    { nome: "Luiz de Lente", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Foto de Óculos", penalidade: "-10 para cada Social" },
-    { nome: "Gasparzinho Sundown", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Filtro Solar", penalidade: "-10 sem EPI completo" },
-    { nome: "Mari-RUN-a", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 com qualquer Soninho" },
-    { nome: "Cruelrine", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com CaretaPool", penalidade: "-10 com qualquer Soninho" },
-    { nome: "Gerente Feedback Jr", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Itabompraí", penalidade: "-10 sem EPI completo" },
-    { nome: "New Saulo", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Kit Churrasco", penalidade: "-10 se precisar pegar Uber para cada Social" },
-    { nome: "O Infiltrado", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Treinamento sem Convite", penalidade: "-10 com Saco Preto" },
-    { nome: "Camiseto", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com cada Pai do Regato, Feliz Aniversário", penalidade: "-10 se jogador não estiver de Bermuda e/ou Regata" },
-    { nome: "Renan Livre Leve", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para cada Social, +5 com Renan Preso", penalidade: "-10 com menos de 3 Renans" },
-    { nome: "Engenheiro Jr Sênior", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 se for o Personagem mais \"antigo\" da mão", penalidade: "-10 com Neymar Contundido" },
-    { nome: "Caôpixaba Modelo", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Vix em Pó e +25 com Vix em Pó E MaCaribe", penalidade: "-10 se o jogador não fizer \"A Pose\"" },
-    { nome: "Meu nome não é Robison", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Presencial de Outra Cidade", penalidade: "-10 se o jogador tiver nome composto" },
-    { nome: "Toddynho", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 com qualquer Soninho" },
-    { nome: "Uivo da Varanda", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 para qualquer Social", penalidade: "-10 com Curso de Formação" },
-    { nome: "Soneca Infinita", pontos: 20, tipo: "Personagem", tag: "Soninho", bonus: "+10 para cada Disney de Janeiro, outro Soninho", penalidade: "-10 com Barrinha de Cereal" },
-    { nome: "Enquetes Everywhere", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Enquete e +5 com Cameraman", penalidade: "-5 sem Mostra o RG" },
-    { nome: "Come Nada", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com CaretaPool", penalidade: "-10 para cada Trigo, Alimento" },
-    { nome: "Ana Pimentão", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 para cada outro Personagem", penalidade: null },
-    { nome: "Trompete Tímido", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Shinobi Campista", penalidade: "-10 com MaCaribe" },
-    { nome: "Humorista Espião", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 para cada Nikiti na Panela, Aniversário do Anderson, Festa Anual", penalidade: "-10 sem Nikiti na Panela" },
-    { nome: "Manager Face", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Presencial de Outra Cidade", penalidade: "-10 se jogador não fizer \"Cara de Gerente\"" },
-    { nome: "Skin Care Maromba", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Grande Nordeste", penalidade: "-10 se o jogador não treinou hoje" },
-    { nome: "A Quem Muitos Amaro", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Vix em Pó", penalidade: "-10 se o jogador não estiver com qualquer objeto na cor roxa" },
-    { nome: "Mostra o RG", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 com qualquer Enquetes Everywhere, Cameraman", penalidade: "-5 sem Atrasilda" },
-    { nome: "Eu Sou A Lenda", pontos: 20, tipo: "Personagem", tag: null, bonus: "+15 com Comprovante", penalidade: "-10 com Disney de Janeiro" },
-    { nome: "Segue o Link", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 para cada outro Personagem", penalidade: null },
-    { nome: "Max Milhas", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 se o jogador cantar por ao menos 10s", penalidade: "-10 se o jogador não voou/voar nos últimos/próximos 7 dias" },
-    { nome: "Atrasilda", pontos: 20, tipo: "Personagem", tag: null, bonus: "+5 para cada Mostra o RG ou Enquetes Everywhere", penalidade: "-10 sem Cameraman" },
-    { nome: "CarioCúcho", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 se jogador estiver sem chinelo e sem chimarrão" },
-    { nome: "Olefinas", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Pato Migratório", penalidade: "-10 com Itabompraí" },
-    { nome: "Tranquilo?", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 se o jogador não imitar o Personagem" },
-    { nome: "Esqueceram de Mim", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 se a carga do celular do jogador for >79%", penalidade: "-10 se o jogador veio de ônibus de viagem" },
-    { nome: "Zócolo na Caixeta", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 com Piadas Devastadoras", penalidade: "-10 com Perguntas sem Timing" },
-    { nome: "Jogador Colombiano", pontos: 20, tipo: "Personagem", tag: null, bonus: "+20 com Contusão no Joelho", penalidade: "-10 se o jogador nunca assistiu à série Narcos" },
-    { nome: "Mochila de Alho", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 com Mochila Petrobras" },
-    { nome: "Cameraman", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Atrasilda e +5 com Mostra o RG", penalidade: "-10 sem Câmera Ligada" },
-    { nome: "Triplo Banho", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Grande Nordeste", penalidade: "-10 com Café" },
-    { nome: "Cachacinha", pontos: 20, tipo: "Personagem", tag: "Soninho", bonus: "+10 para cada Disney de Janeiro, outro Soninho", penalidade: "-10 com Pergunta Sem Timing" },
-    { nome: "Labrador", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Bruce Weiner", penalidade: "-10 com qualquer Soninho" },
-    { nome: "Bigode Sem Tempo", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro", penalidade: "-10 com qualquer Social" },
-    { nome: "Carioca do Brejo", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Disney de Janeiro ou +80 com Floripa", penalidade: "-15 sem Café" },
-    { nome: "Caixeta de Zócolo", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Piadas Devastadoras", penalidade: "-10 com Perguntas sem Timing" },
-    { nome: "Hermano Mullets", pontos: 20, tipo: "Personagem", tag: null, bonus: "+15 com Presencial de Outra Cidade", penalidade: "-15 com Presencial" },
-    { nome: "Laboratórios Medley", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Grande Nordeste", penalidade: "-10 com qualquer Social" },
-    { nome: "Laboratórios Achè", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Laboratórios Medley", penalidade: "-10 para cada Social" },
-    { nome: "Ricardo Nervosinho", pontos: 20, tipo: "Personagem", tag: "Premium Care", bonus: "+10 para cada Evento, MaCaribe", penalidade: "-10 sem Social" },
-    { nome: "Doceira de Nikiti", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Nikiti na Panela", penalidade: "-10 para cada Social" },
-    { nome: "Mexido, Não Batido", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Nikiti na Panela", penalidade: "-10 para cada Social" },
-    { nome: "Shinobi Campista", pontos: 20, tipo: "Personagem", tag: "Petrobanda", bonus: "+10 com outro Petrobanda", penalidade: "-10 para cada Social" },
-    { nome: "General Trigus Aurelius", pontos: 20, tipo: "Personagem", tag: null, bonus: "+15 com Pão de Queijo e +5 com MaCaribe e Social", penalidade: "-10 para cada Trigo" },
-    { nome: "PETagoga", pontos: 20, tipo: "Personagem", tag: null, bonus: "+10 com Vereadora e +5 para cada Colheita Feliz, Shinobi Campista e PET", penalidade: null },
-    { nome: "Bibliotecário", pontos: 20, tipo: "Personagem", tag: null, bonus: "+50 com Biblioteca do EDIBH", penalidade: "-10 com Resumo da Carol" }
+    { nome: "Presencial de Outra Cidade", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Considere até dois Locais como apenas um", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "A" },
+    { nome: "Mochila Petrobras", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Ao fim do jogo, pegue até um Item (carta extra) da área de descarte", penalidades: "[P] -25 com Disney de Janeiro", tag: "", deck: "Branco", naipe: "Copas", numero: "A" },
+    { nome: "PC/Richard", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Elimina todas as penalidades se tiver Curso de Formação", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "A" },
+    { nome: "Nível", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] +10 para cada Vix em Pó e Festa Anual. [P] Anulada com Curso de Formação.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "A" },
+    { nome: "Não pode ser real", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Anula uma penalidade", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "A" },
+    { nome: "T5 Honorário", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Ao fim do jogo, pegue até um Personagem (carta extra) da área de descarte", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "A" },
+    { nome: "Carona", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Você pode ter até cinco Personagens", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "A" },
+    { nome: "Lista de Presença", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Você pode ter até seis Personagens", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "A" },
+    { nome: "Amigo do Raul", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Pode duplicar qualquer Personagem do jogo. Não afeta bônus, penalidade e força básica da carta copiada.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "A" },
+    { nome: "Modelo Híbrido", figura: "", tipo: "Coringa", pontos: 0, bonus: "[B] Considere Presencial e Home-Office como apenas um Evento", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "A" },
+    { nome: "CURSO DE FORMAÇÃO", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] +10 com Disney de Janeiro OU PC/Richard OU Lista de Presença", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "10" },
+    { nome: "CHÁ DE FRALDAS", figura: "", tipo: "Evento", pontos: 40, bonus: "", penalidades: "[P] -10 sem Pacote de Fraldas. [P] Anulada sem Premium Care", tag: "", deck: "Branco", naipe: "Copas", numero: "10" },
+    { nome: "VISITA TÉCNICA", figura: "", tipo: "Evento", pontos: 40, bonus: "", penalidades: "[P] -10 a menos que tenha EPI Completo", tag: "", deck: "Verde", naipe: "Copas", numero: "10" },
+    { nome: "FESTA ANUAL", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] +10 com qualquer Local ou com T5 Honorário", penalidades: "", tag: "Social", deck: "Branco", naipe: "Espadas", numero: "A" },
+    { nome: "ALMOÇÃO", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] +20 com MaCaribe", penalidades: "", tag: "Social", deck: "Verde", naipe: "Espadas", numero: "A" },
+    { nome: "INVADE HOUSE", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] +20 com MaCaribe", penalidades: "", tag: "Social", deck: "Amarelo", naipe: "Ouros", numero: "10" },
+    { nome: "COFFEE DA CAROL", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] +15 para cada Comprovadamente Perdida e Chá de Fraldas. [P] -15 sem Café", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "10" },
+    { nome: "ANIVERSÁRIO DO ANDERSON", figura: "", tipo: "Evento", pontos: 40, bonus: "[B] Não conta como um Evento", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "10" },
+    { nome: "PRESENCIAL", figura: "", tipo: "Evento", pontos: 40, bonus: "", penalidades: "[P] -10 com Pato Migratório", tag: "", deck: "Branco", naipe: "Paus", numero: "10" },
+    { nome: "HOME-OFFICE", figura: "", tipo: "Evento", pontos: 40, bonus: "", penalidades: "[P] -10 com Pato Migratório", tag: "", deck: "Verde", naipe: "Paus", numero: "10" },
+    { nome: "Carregador de Notebook", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "Já sabe quem perdeu, né? :D", penalidades: "", tag: "Perdido", deck: "Amarelo", naipe: "Copas", numero: "J" },
+    { nome: "Aplausos Constrangedores", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +5 para cada Personagem, Aniversário do Anderson, Curso de Formação", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "K" },
+    { nome: "Comprovante", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "Só 2 pessoas recebem ;)", penalidades: "", tag: "Perdido", deck: "Amarelo", naipe: "Copas", numero: "Q" },
+    { nome: "Contusão no Joelho", figura: "", tipo: "Item/Meme", pontos: 10, bonus: "", penalidades: "[P] Anula um Personagem exceto Joabe-se quem Puder", tag: "", deck: "Branco", naipe: "Copas", numero: "J" },
+    { nome: "Calebito Vai dar Certo", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +5 para cada Personagem. [P] -10 para cada Ana Pimentão e Farmácia", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "K" },
+    { nome: "BassaNews", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 com Bassani Sindical. [P] -15 se hoje é sexta-feira.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "Q" },
+    { nome: "Feedback", figura: "", tipo: "Item/Meme", pontos: 20, bonus: "", penalidades: "[P] -5 para cada Personagem, exceto Gerente Feedback Jr", tag: "", deck: "Verde", naipe: "Copas", numero: "J" },
+    { nome: "Kit Churrasco", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 para cada Invade House, Aniversário do Anderson, Festa Anual", penalidades: "", tag: "Alimento", deck: "Verde", naipe: "Copas", numero: "K" },
+    { nome: "Dados Conflitantes", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "", penalidades: "[P] -10 com Curso de Formação ou Aniversário do Anderson", tag: "", deck: "Verde", naipe: "Copas", numero: "Q" },
+    { nome: "Não se preocupe com prova", figura: "", tipo: "Item/Meme", pontos: 10, bonus: "", penalidades: "[P] -5 para cada Personagem se tiver Curso de Formação", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "J" },
+    { nome: "Segura, Peão!", figura: "", tipo: "Item/Meme", pontos: 14, bonus: "[B] +63 com MaCaribe ou +53 com Vix em Pó ou +43 com Grande Nordeste", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "K" },
+    { nome: "Pão de Queijo", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +5 para cada Evento", penalidades: "", tag: "Alimento", deck: "Amarelo", naipe: "Espadas", numero: "Q" },
+    { nome: "Pato Migratório", figura: "", tipo: "Item/Meme", pontos: 15, bonus: "[B] +10 com cada Invade House, Aniversário do Anderson, Almoção, Festa Anual.", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "J" },
+    { nome: "Ordem de Grandeza", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 com Número Mágico", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "K" },
+    { nome: "Resumo da Carol", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 para cada Personagem se tiver Curso de Formação", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "Q" },
+    { nome: "Bolo de Aniversário", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 com qualquer Evento exceto Curso de Formação, Presencial e Home-Office", penalidades: "", tag: "Trigo", deck: "Verde", naipe: "Espadas", numero: "J" },
+    { nome: "Check-list", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +5 para cada Aniversário do Anderson, Curso de Formação, Home-Office, Presencial", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "K" },
+    { nome: "Câmera Ligada", figura: "", tipo: "Item/Meme", pontos: 20, bonus: "", penalidades: "[P] -5 para cada Personagem, exceto Cameraman", tag: "", deck: "Verde", naipe: "Espadas", numero: "Q" },
+    { nome: "Day Use", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "", penalidades: "[P] -5 para cada Personagem exceto Segue o Link e Ana Pimentão", tag: "Presente", deck: "Amarelo", naipe: "Ouros", numero: "J" },
+    { nome: "Piada Devastadora", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +25 para cada Evento", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "K" },
+    { nome: "Filtro Solar", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 Gasparzinho Sundown", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "Q" },
+    { nome: "EPI Completo", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "", penalidades: "[P] -25 com Pergunta Sem Timing", tag: "", deck: "Branco", naipe: "Ouros", numero: "J" },
+    { nome: "Strip no Jet de Swap", figura: "", tipo: "Item/Meme", pontos: 30, bonus: "", penalidades: "[P] -5 para cada Personagem", tag: "", deck: "Branco", naipe: "Ouros", numero: "K" },
+    { nome: "Kahoot", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 com qualquer Personagem", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "Q" },
+    { nome: "Saco Preto", figura: "", tipo: "Item/Meme", pontos: 30, bonus: "", penalidades: "[P] -5 para cada Personagem e -25 com Itabompraí.", tag: "", deck: "Verde", naipe: "Ouros", numero: "J" },
+    { nome: "Pergunta Sem Timing", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "", penalidades: "[P] -15 para cada Curso de Formação", tag: "", deck: "Verde", naipe: "Ouros", numero: "K" },
+    { nome: "Tava Embarcado?", figura: "", tipo: "Item/Meme", pontos: 30, bonus: "", penalidades: "[P] -5 para cada Personagem", tag: "", deck: "Verde", naipe: "Ouros", numero: "Q" },
+    { nome: "Jaqueta no Verão", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B]  +10 com PC/Richard", penalidades: "", tag: "Presente", deck: "Amarelo", naipe: "Paus", numero: "J" },
+    { nome: "Enquete", figura: "", tipo: "Item/Meme", pontos: 25, bonus: "", penalidades: "[P] -10 para cada Evento e -5 para cada Presente", tag: "", deck: "Amarelo", naipe: "Paus", numero: "K" },
+    { nome: "Café", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 com Coffee da Carol ou Curso de Formação ou Presencial ou Aniversário do Anderson", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "Q" },
+    { nome: "Discussão Pós-prova", figura: "", tipo: "Item/Meme", pontos: 30, bonus: "", penalidades: "[P] -10 para cada Personagem", tag: "", deck: "Branco", naipe: "Paus", numero: "J" },
+    { nome: "Garrafa", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "Já sabe quem perdeu, né? :D", penalidades: "", tag: "Perdido", deck: "Branco", naipe: "Paus", numero: "K" },
+    { nome: "Chaveiro Ofensivo", figura: "", tipo: "Item/Meme", pontos: 15, bonus: "", penalidades: "[P] Anula PC/Richard", tag: "Presente", deck: "Branco", naipe: "Paus", numero: "Q" },
+    { nome: "Herbalife", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 para cada Ana Pimentão, Clara Herculino, Prefeito Pimenta", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "J" },
+    { nome: "Pacote de Fralda", figura: "", tipo: "Item/Meme", pontos: 10, bonus: "[B] +10 com Chá de Fraldas. [P] -5 para cada Personagem exceto Premium Care", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "K" },
+    { nome: "É tudo a mesma Coisa", figura: "", tipo: "Item/Meme", pontos: 5, bonus: "[B] +10 para as duplas Ana Pimentão e Comprovadamente Perdida, Caixeta de Zócolo e Zócolo na Caixeta, Uivo da Varanda e Tô Em Todas,  Sósia do Caio e Amigo do Raul", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "Q" },
+    { nome: "Disney de Janeiro", figura: "", tipo: "Local", pontos: 60, bonus: "[B] +10 se o jogador estiver de Chinelo ou Tomando Matte", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "9" },
+    { nome: "Nikiti na Panela", figura: "", tipo: "Local", pontos: 60, bonus: "[B] +10 se o jogador estiver vendo um grande Corpo de Água ou o Corcovado", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "9" },
+    { nome: "Vix em Pó", figura: "", tipo: "Local", pontos: 60, bonus: "[B] +10 se o jogador estiver comendo Caranguejo ou tiver Pó no pé/na roupa", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "10" },
+    { nome: "Grande Nordeste", figura: "", tipo: "Local", pontos: 60, bonus: "[B] +10 se o jogador estiver pegando Sol ou bebendo Água", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "10" },
+    { nome: "MaCaribe", figura: "", tipo: "Local", pontos: 60, bonus: "[B] +10 se o jogador estiver de Camiseta e pode ter até três Eventos", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "10" },
+    { nome: "Itabompraí", figura: "", tipo: "Local", pontos: 50, bonus: "[B] +20 se o jogador estiver de Bota ou com EPI Completo", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "10" },
+    { nome: "Vereadora", figura: "Tainan de Farias Nogueira", tipo: "Personagem", pontos: 20, bonus: "[B] +5 com cada outro personagem. [P] -10 com qualquer Local, exceto Disney de Janeiro.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "2" },
+    { nome: "MagnâniMO", figura: "Thiago Muniz Magnani", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se o jogador fizer uma acrobacia. [P] -10 se o jogador chorar no futebol.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Copas", numero: "3" },
+    { nome: "Rainha do Kahoot", figura: "Nathalia Tavares da Gama Lima", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Kahoot. [P] -10 para cada Social", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "4" },
+    { nome: "Caô Amigo", figura: "Raul Victor Azevedo Barrozo do Couto", tipo: "Personagem", pontos: 20, bonus: "[B] +15 com Amigo do Raul, +5 para cada Social. [P] -10 sem triplo R (Telepata de Ni + MãeCaé Tips)", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Copas", numero: "5" },
+    { nome: "História Sem Fim", figura: "Renan Puebla de Souza", tipo: "Personagem", pontos: 20, bonus: "[B] +80 com Procura Sem Fim. [P] -10 com menos de 3 Renans.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "6" },
+    { nome: "MãeCaé Tips", figura: "Renata Tavares Dantas Neves", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com triplo R (Telepata de Ni + Caô Amigo). [P] -10 com qualquer Social.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "7" },
+    { nome: "Scheid Filho", figura: "Ricardo di Lucia Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Kahoot e +15 para cada Filho. [P] -15 para cada Social", penalidades: "", tag: "", deck: "Amarelo", naipe: "Copas", numero: "8" },
+    { nome: "Tia Clarisse", figura: "Clarisse Gaia Edais Pepe", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com qualquer Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "2" },
+    { nome: "Comprovadamente Perdida", figura: "Carolina Martins Ribeiro", tipo: "Personagem", pontos: 20, bonus: "[B] +30 se tiver os três Perdidos. [P] -10 com menos de três Perdidos.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "3" },
+    { nome: "Milionário Disfarçado", figura: "Filipe Machado Fontes", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Contador de Moedas. [P] -10 com Segura, Peão!", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "4" },
+    { nome: "Bassani Sindical", figura: "Bruno Bassani Barreto", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Dados Conflitantes. [P] -10 para cada Social, MaCaribe.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "5" },
+    { nome: "Feliz Aniversário", figura: "Anderson Soares da Costa", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Bolo, Evento, MaCaribe, Check-list. [P] -10 com Pergunta sem Timing ou sem Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "6" },
+    { nome: "Sósia do Caio", figura: "Caio Mateus Porto Siqueira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro ou +5 com MaCaribe. [P] -10 com Café.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "7" },
+    { nome: "Estratégia Cruel", figura: "Augusto Cesar Klassen Amorim Alves de Lima", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vix em Pó. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Copas", numero: "8" },
+    { nome: "Tromps dos Magos", figura: "Andre do Carmo Viceconte Trompieri", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Nikiti na Panela, outro Soninho. [P] -10 para cada Social", penalidades: "", tag: "Soninho", deck: "Verde", naipe: "Copas", numero: "2" },
+    { nome: "Número Mágico", figura: "Igor Quintanilha Camillo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Ordem de Grandeza. [P] -10 se o jogador não tentar um valor aproximado.", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "3" },
+    { nome: "Prefeito Pimenta", figura: "Lucas de Barros Pimenta", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Nikiti na Panela e Carona. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "4" },
+    { nome: "Guitarra de Suprimentos", figura: "Lucas Gianinni Ramos da Rin", tipo: "Personagem", pontos: 20, bonus: "[B] +80 com PDV e +10 com General Trigus Aurelius. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "5" },
+    { nome: "Joabe-se Quem Puder", figura: "Joabe Salles do Nascimento", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Lista de Presença. [P] -10 para cada Social.", penalidades: "", tag: "Premium Care", deck: "Verde", naipe: "Copas", numero: "6" },
+    { nome: "Super Sincera", figura: "Juliana Damaris Candido", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Guitarra de Suprimentos. [P] -10 com cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "7" },
+    { nome: "Vamos Marcar", figura: "Leonardo de Paula Camargo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Pato Migratório. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "8" },
+    { nome: "Colheita Feliz", figura: "Louise Carrullo Pumar", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Pato Migratório e +5 para cada Shinobi Campista, PETagoga e Vereadora. [P] -10 com qualquer Social", penalidades: "", tag: "", deck: "Verde", naipe: "Copas", numero: "9" },
+    { nome: "Raulzito", figura: "Raul Nascimento Rosa da Costa", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com outro PetroBanda. [P] -10 com qualquer Social", penalidades: "", tag: "PetroBanda", deck: "Amarelo", naipe: "Espadas", numero: "2" },
+    { nome: "Renan Preso", figura: "Renan Moreira Schneider", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Pergunta Sem Timing, +5 com Renan Livre Leve. [P] -10 com qualquer Social.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "3" },
+    { nome: "Super Mario on IceCream", figura: "Rodrigo Cristiano Pires", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com qualquer Não pode ser real, Calebito Vai dar Certo. [P] -10 com Wario.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Espadas", numero: "4" },
+    { nome: "Telepata de Ni", figura: "Ruan Carlos Alves Pereira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com triplo R (Caô Amigo + MãeCae Tips). [P] -10 com Rita Lee.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "5" },
+    { nome: "Espião do PC", figura: "Vinicius Braga Rodrigues da Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Apresentação do Projeto. [P] -5 para cada outro Personagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "6" },
+    { nome: "Bruce Weiner", figura: "Weiner Mendonca Nobre Lima", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Alfred. [P] -10 sem Labrador.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "7" },
+    { nome: "CaretaPool", figura: "Yuri Meireles Laia", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Cruelrine. [P] -10 com Pato Migratório", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "8" },
+    { nome: "Série B", figura: "Marina Gusmao de Oliveira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vix em Pó. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Espadas", numero: "9" },
+    { nome: "Média de Ouro", figura: "Alisson Lima Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Curso de Formação, Nikiti na Panela. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "2" },
+    { nome: "Clara Herculino", figura: "Lara de Araujo e Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Nikiti na Panela. [P] -10 para cada Social, Enquete", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "3" },
+    { nome: "Jorge Veludo", figura: "Caio Marcus Andrade de Oliveira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 para cada Social.", penalidades: "", tag: "Premium Care", deck: "Branco", naipe: "Espadas", numero: "4" },
+    { nome: "Farmácia", figura: "Bruno Cesar Linhares da Costa Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +5 para cada outro Personagem", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "5" },
+    { nome: "Soneca Russa", figura: "Dasaiev de Marco Ribeiro Guedes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Disney de Janeiro, outro Soninho. [P] -10 com Pergunta Sem Timing.", penalidades: "", tag: "Soninho", deck: "Branco", naipe: "Espadas", numero: "6" },
+    { nome: "Tô Em Todas", figura: "Edson Alves Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para qualquer Evento E Local. [P] -15 para Aplausos Constrangedores", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "7" },
+    { nome: "Pai do Regato", figura: "Felipe Klein Soares", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Camiseto. [P] -10 para cada Social.", penalidades: "", tag: "Premium Care", deck: "Branco", naipe: "Espadas", numero: "8" },
+    { nome: "Praieira de Minas", figura: "Fernanda Helena de Paula Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vix em Pó e +10 com Série B. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Espadas", numero: "9" },
+    { nome: "Solução Caseira", figura: "Lucas Macos Caseira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Aniversário do Anderson, Festa Anual. [P] -10 se tirar a barba.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "2" },
+    { nome: "Rei da Rifa", figura: "Lucas Fogaca de Sousa", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Rifa e +10 com Curso de Formação. [P] -10 se tiver que repetir a explicação da matéria.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "3" },
+    { nome: "Aí Vem O Desespero", figura: "Mattheus Gomes Sales", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Discussão Pós-prova. [P] -10 com cada Social, MaCaribe.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "4" },
+    { nome: "ServiceNat", figura: "Natalia Marques Malheiros Maia", tipo: "Personagem", pontos: 20, bonus: "[B] +5 para cada outro Personagem. [B] +10 com Nikiti na Panela. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "5" },
+    { nome: "Luiz de Lente", figura: "Luiz Henrique Pinto de Souza", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Foto de Óculos. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "6" },
+    { nome: "Gasparzinho Sundown", figura: "Luis Felipe Xavier Augusto de Oliveira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Filtro Solar. [P] -10 sem EPI completo.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "7" },
+    { nome: "Mari-RUN-a", figura: "Mariana Mendes Guimaraes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com qualquer Soninho.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "8" },
+    { nome: "Cruelrine", figura: "Marcel Ramos Rangel", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com CaretaPool. [P] -10 com qualquer Soninho.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "9" },
+    { nome: "Gerente Feedback Jr", figura: "Romilson Braga Teixeira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Itabomprai. [P] -10 sem EPI completo.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "2" },
+    { nome: "New Saulo", figura: "Saulo de Souza Cunha", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Kit Churrasco. [P] -10 se precisar pegar Uber para cada Social.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "3" },
+    { nome: "O Infiltrado", figura: "Pedro Felipi Tavares Prado", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Treinamento sem Convite. [P] -10 com Saco Preto.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "4" },
+    { nome: "Camiseto", figura: "Pedro Henrique Regato Moutinho", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com cada Pai do Regato, Feliz Aniversário. [P] -10 se jogador não estiver de Bermuda e/ou Regata.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "5" },
+    { nome: "Renan Livre Leve", figura: "Renan Souto Rodrigues", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Social, +5 com Renan Preso. [P] -10 com menos de 3 Renans.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "6" },
+    { nome: "Engenheiro Jr Sênior", figura: "Renato Fernandes de Aquino", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se for o Personagem mais \"antigo\" da mão. [P] -10 com Neymar Contundido.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Ouros", numero: "7" },
+    { nome: "Caôpixaba Modelo", figura: "Ricardo Reboucas de Alcantara", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vix em Pó e +25 com Vix em Pó E MaCaribe. [P] -10 se o jogador não fizer \"A Pose\".", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "8" },
+    { nome: "Meu nome não é Robison", figura: "Robison Giovani Malucelli", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Presencial de Outra Cidade. [P] -10 se o jogador tiver nome composto.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Ouros", numero: "9" },
+    { nome: "Toddynho", figura: "Douglas Coelho da Cruz", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com qualquer Soninho", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "2" },
+    { nome: "Uivo da Varanda", figura: "Charles Lima Pantoja Cordeiro", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para qualquer Social. [P] -10 com Curso de Formação.", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "3" },
+    { nome: "Soneca Infinita", figura: "Karla Lucena da Cunha", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Disney de Janeiro, outro Soninho. [P] -10 com Barrinha de Cereal.", penalidades: "", tag: "Soninho", deck: "Branco", naipe: "Ouros", numero: "4" },
+    { nome: "Enquetes Everywhere", figura: "Fernando Cezar Pauletto", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Enquete e +5 com Cameraman. [P] -5 sem Mostra o RG.", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "5" },
+    { nome: "Come Nada", figura: "Andre da Silva Menezes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com CaretaPool. [P] -10 para cada Trigo, Alimento.", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "6" },
+    { nome: "Ana Pimentão", figura: "Ana Carolina Nunes Perdigao", tipo: "Personagem", pontos: 20, bonus: "[B] +5 para cada outro Personagem", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "7" },
+    { nome: "Trompete Tímido", figura: "Bianca Brandao de Paula Antunes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Shinobi Campista. [P] -10 com MaCaribe.", penalidades: "", tag: "", deck: "Branco", naipe: "Ouros", numero: "8" },
+    { nome: "Humorista Espião", figura: "Andre Mendes Mesquita", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Nikiti na Panela, Aniversário do Anderson, Festa Anual. [P] -10 sem Nikiti na Panela", penalidades: "", tag: "Premium Care", deck: "Branco", naipe: "Ouros", numero: "9" },
+    { nome: "Manager Face", figura: "Jefferson Egidio de Almeida", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Presencial de Outra Cidade. [P] -10 se jogador não fizer \"Cara de Gerente\".", penalidades: "", tag: "Premium Care", deck: "Verde", naipe: "Ouros", numero: "2" },
+    { nome: "Skin Care Maromba", figura: "Igor Barros Farias", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Grande Nordeste. [P] -10 se o jogador não treinou hoje.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "3" },
+    { nome: "A Quem Muitos Amaro", figura: "Lucas Amaro de Lima Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vix em Pó. [P] -10 se o jogador não estiver com qualquer objeto na cor roxa.", penalidades: "", tag: "Premium Care", deck: "Verde", naipe: "Ouros", numero: "4" },
+    { nome: "Mostra o RG", figura: "Leticia Cucelle Torres Soares", tipo: "Personagem", pontos: 20, bonus: "[B] +5 com qualquer Enquetes Everywhere, Cameraman. [P] -5 sem Atrasilda.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "5" },
+    { nome: "Eu Sou A Lenda", figura: "Julio Augusto Duarte Chagas Junior", tipo: "Personagem", pontos: 20, bonus: "[B] +15 com Comprovante. [P] -10 com Disney de Janeiro.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "6" },
+    { nome: "Segue o Link", figura: "Joao Antonio Sousa de Argollo", tipo: "Personagem", pontos: 20, bonus: "[B] +5 para cada outro Personagem", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "7" },
+    { nome: "Max Milhas", figura: "Larissa Santana Nascimento", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se o jogador cantar por ao menos 10s. [P] -10 se o jogador não voou/voar nos últimos/próximos 7 dias.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "8" },
+    { nome: "Atrasilda", figura: "Lais de Araujo Almeida", tipo: "Personagem", pontos: 20, bonus: "[B]  +5 para cada Mostra o RG ou Enquetes Everywhere. [P] -10 sem Cameraman.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "9" },
+    { nome: "CarioCúcho", figura: "Pedro Henrique Jardim Nunes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 se jogador estiver sem chinelo e sem chimarrão.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "2" },
+    { nome: "Olefinas", figura: "Pedro Paulo Barbosa Feitosa", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Pato Migratório. [P] -10 com Itabompraí.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "3" },
+    { nome: "Tranquilo?", figura: "Roberto Moreira Coelho da Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 se o jogador não imitar o Personagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "4" },
+    { nome: "Esqueceram de Mim", figura: "Robson Alves Araujo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se a carga do celular do jogador for >79%. [P] -10 se o jogador veio de ônibus de viagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "5" },
+    { nome: "Zócolo na Caixeta", figura: "Thiago Campos Zocolo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Piadas Devastadoras. [P] -10 com Perguntas sem Timing.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Paus", numero: "6" },
+    { nome: "Jogador Colombiano", figura: "Tiago Resende Lucinda", tipo: "Personagem", pontos: 20, bonus: "[B] +20 com Contusão no Joelho. [P] -10 se o jogador nunca assistiu à série Narcos.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "7" },
+    { nome: "Mochila de Alho", figura: "Vitor Santos Aguiar", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com Mochila Petrobras.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "8" },
+    { nome: "Cameraman", figura: "Weverton dos Santos", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Atrasilda e +5 com Mostra o RG. [P] -10 sem Câmera Ligada.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "9" },
+    { nome: "Triplo Banho", figura: "Allan dos Anjos Costa Dantas", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Grande Nordeste. [P] -10 com Café.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "2" },
+    { nome: "Cachacinha", figura: "Alison Heringer Rocha Moraes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Disney de Janeiro, outro Soninho. [P] -10 com Pergunta Sem Timing.", penalidades: "", tag: "Soninho", deck: "Branco", naipe: "Paus", numero: "3" },
+    { nome: "Labrador", figura: "Daniel Henrique Mandarino Duarte", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Bruce Weiner. [P] -10 com qualquer Soninho.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "4" },
+    { nome: "Bigode Sem Tempo", figura: "Bruno de Vasconcellos Machado", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com qualquer Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "5" },
+    { nome: "Carioca do Brejo", figura: "Felipe Leite Fagundes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro ou +80 com Floripa. [P] -15 sem Café.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "6" },
+    { nome: "Caixeta de Zócolo", figura: "Danilo Caixeta Gomes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Piadas Devastadoras. [P] -10 com Perguntas sem Timing.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "7" },
+    { nome: "Hermano Mullets", figura: "Henrique Vicentin", tipo: "Personagem", pontos: 20, bonus: "[B] +15 com Presencial de Outra Cidade. [P] -15 com Presencial", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "8" },
+    { nome: "Laboratórios Medley", figura: "Ester Medley Bezerra Teixeira de Almeida", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Grande Nordeste. [P] -10 com qualquer Social.", penalidades: "", tag: "", deck: "Branco", naipe: "Paus", numero: "9" },
+    { nome: "Laboratórios Achè", figura: "Lucas Nunes Ache Assumpcao", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Laboratórios Medley. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "2" },
+    { nome: "Ricardo Nervosinho", figura: "Luis Ricardo Pinheiro Vieira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 para cada Evento, MaCaribe. [P] -10 sem Social.", penalidades: "", tag: "Premium Care", deck: "Verde", naipe: "Paus", numero: "3" },
+    { nome: "Doceira de Nikiti", figura: "Mayara Vieira Henriques", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Nikiti na Panela. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "4" },
+    { nome: "Mexido, Não Batido", figura: "Daniele Martini", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Nikiti na Panela. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "5" },
+    { nome: "Shinobi Campista", figura: "Luiza Lisboa Naegele e Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com outro Petrobanda. [P] -10 para cada Social", penalidades: "", tag: "Petrobanda", deck: "Verde", naipe: "Paus", numero: "6" },
+    { nome: "General Trigus Aurelius", figura: "Marcus Vinicius dos Santos Lins", tipo: "Personagem", pontos: 20, bonus: "[B] +15 com Pão de Queijo e +5 com MaCaribe e Social. [P] -10 para cada Trigo.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "7" },
+    { nome: "PETagoga", figura: "Mariane Martins de Carvalho", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vereadora e +5 para cada Colheita Feliz, Shinobi Campista e PET.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "8" },
+    { nome: "Bibliotecário", figura: "Mateus Silva Duraes", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Biblioteca do EDIBH. [P] -10 com Resumo da Carol.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "9" }
 ];
 
-function encontrarCarta(nome) {
-    return cartas.find(c => c.nome.toLowerCase() === nome.toLowerCase());
+function normalizarNome(nome) {
+    return nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "");
 }
 
-function validarMao(mao, interacoes) {
-    const contagem = { Personagem: 0, Local: 0, Evento: 0, Coringa: 0, "Item/Meme": 0 };
-    const coringasNaMao = mao.filter(c => c.tipo === "Coringa").map(c => c.nome);
-    const eventosNaMao = mao.filter(c => c.tipo === "Evento").map(c => c.nome);
-    const locaisNaMao = mao.filter(c => c.tipo === "Local").map(c => c.nome);
-    const personagensNaMao = mao.filter(c => c.tipo === "Personagem").map(c => c.nome);
-    const maCaribeNaMao = locaisNaMao.includes("MaCaribe");
-
-    mao.forEach(carta => {
-        if (contagem[carta.tipo] !== undefined) {
-            contagem[carta.tipo]++;
-        }
-    });
-
-    // Bônus do Aniversário do Anderson
-    if (eventosNaMao.includes("ANIVERSÁRIO DO ANDERSON")) {
-        contagem.Evento--;
+function validarMao(nomesCartas) {
+    if (nomesCartas.length < 1) {
+        return "Por favor, insira o nome de pelo menos uma carta.";
     }
 
-    // Bônus do Modelo Híbrido
-    if (coringasNaMao.includes("Modelo Híbrido") && eventosNaMao.includes("PRESENCIAL") && eventosNaMao.includes("HOME-OFFICE")) {
-        contagem.Evento--;
-    }
-    
-    // Bônus do Presencial de Outra Cidade
-    if (coringasNaMao.includes("Presencial de Outra Cidade")) {
-        if (contagem.Local > 2) {
-            return { valido: false, motivo: `Mão inválida: O bônus do Presencial de Outra Cidade permite até dois Locais, mas você tem ${contagem.Local}.` };
-        } else if (contagem.Local === 2) {
-             contagem.Local--;
-        }
+    const unicos = new Set(nomesCartas);
+    if (unicos.size !== nomesCartas.length) {
+        return "Mão inválida. Cartas duplicadas não são permitidas.";
     }
 
-    // Bônus do MaCaribe
-    if (maCaribeNaMao) {
-        if (contagem.Evento > 3) {
-            return { valido: false, motivo: `Mão inválida: O bônus de MaCaribe permite até três Eventos, mas você tem ${contagem.Evento}.` };
-        }
+    const cartasEncontradas = nomesCartas.map(nome => cartas.find(c => normalizarNome(c.nome) === nome)).filter(c => c);
+
+    if (cartasEncontradas.length !== nomesCartas.length) {
+        const naoEncontradas = nomesCartas.filter(nome => !cartas.find(c => normalizarNome(c.nome) === nome));
+        return `Mão inválida. As seguintes cartas não foram encontradas: ${naoEncontradas.join(', ')}.`;
     }
 
-    // Aplicações de coringas que alteram limites
-    let limitePersonagens = 3;
-    if (coringasNaMao.includes("Carona")) {
-        limitePersonagens = 5;
-    }
-    if (coringasNaMao.includes("Lista de Presença")) {
-        limitePersonagens = 6;
-    }
-    
-    if (contagem.Personagem > limitePersonagens) {
-        return { valido: false, motivo: `Mão inválida: Excesso de Personagens (${contagem.Personagem}/${limitePersonagens}).` };
-    }
-    if (contagem.Local > 1) {
-        if (coringasNaMao.includes("Presencial de Outra Cidade") && contagem.Local <= 2) {
-             // Válido
-        } else {
-            return { valido: false, motivo: `Mão inválida: Excesso de Locais (${contagem.Local}/1).` };
-        }
-    }
-    if (contagem.Evento > 1) {
-        if (coringasNaMao.includes("Modelo Híbrido") && eventosNaMao.includes("PRESENCIAL") && eventosNaMao.includes("HOME-OFFICE")) {
-            // Válido
-        } else if (maCaribeNaMao && contagem.Evento <= 3) {
-            // Válido
-        } else {
-             return { valido: false, motivo: `Mão inválida: Excesso de Eventos (${contagem.Evento}/1).` };
-        }
-    }
-
-    return { valido: true, motivo: "Mão válida." };
+    return "ok";
 }
+
 
 function calcularPontuacao() {
-    const cartasInput = document.getElementById("cartasInput").value.split('\n').filter(Boolean).map(c => c.trim());
-    const interacoesInput = document.getElementById("interacoesInput").value.split('\n').filter(Boolean).map(c => c.trim().toLowerCase());
-    const resultadoDiv = document.getElementById("resultado");
+    const inputCartas = document.getElementById('cartas-jogador').value;
+    const nomesCartasNaMao = inputCartas.split(',').map(nome => normalizarNome(nome.trim()));
+    let resultadoHTML = "";
 
-    const mao = cartasInput.map(nome => encontrarCarta(nome)).filter(Boolean);
-
-    // Validação da mão
-    const validacao = validarMao(mao, interacoesInput);
-    if (!validacao.valido) {
-        resultadoDiv.innerHTML = `<p style="color:red;">**Mão Inválida:** ${validacao.motivo}</p>`;
+    const validacao = validarMao(nomesCartasNaMao);
+    if (validacao !== "ok") {
+        document.getElementById('resultado').innerHTML = validacao;
         return;
     }
 
+    // Lógica para obter as ações do checklist
+    let acoesExternas = [];
+    const checkboxesAcoes = document.querySelectorAll('#acoes-jogador-checklist input[type="checkbox"]');
+    checkboxesAcoes.forEach(checkbox => {
+        if (checkbox.checked) {
+            acoesExternas.push(checkbox.dataset.acao.toLowerCase());
+        }
+    });
+
     let pontuacaoBase = 0;
-    let bonusTotal = 0;
-    let penalidadeTotal = 0;
-    let detalhes = `<h3>Resultados</h3><p>Mão válida. Calculando...</p>`;
-    
-    const cartasEAnulacoes = {
-        mao: [...mao],
-        bonusAnulados: [],
-        penalidadesAnuladas: []
-    };
+    let pontuacaoBonus = 0;
+    let pontuacaoPenalidade = 0;
 
-    // Lógica para coringas que afetam o cálculo
-    const coringasNaMao = mao.filter(c => c.tipo === "Coringa").map(c => c.nome);
-    const temNaoPodeSerReal = coringasNaMao.includes("Não pode ser real");
-    const temPC_Richard = coringasNaMao.includes("PC/Richard");
-    const temCursoDeFormacao = mao.some(c => c.nome === "CURSO DE FORMAÇÃO");
-    const temChaveiroOfensivo = mao.some(c => c.nome === "Chaveiro Ofensivo");
-    const temAmigoDoRaul = coringasNaMao.includes("Amigo do Raul");
-    
-    // Anulação de penalidades pelo PC/Richard e Chaveiro Ofensivo
-    const pcRichardAnulado = temChaveiroOfensivo;
+    const cartasNaMao = nomesCartasNaMao.map(nome => cartas.find(c => normalizarNome(c.nome) === nome));
+    const nomesCartasValidos = cartasNaMao.map(c => normalizarNome(c.nome));
+    const tipos = cartasNaMao.map(c => c.tipo);
+    const tags = cartasNaMao.flatMap(c => c.tag ? c.tag.split(',').map(t => t.trim()) : []);
 
-    // Passo 1: Pontuação Base
-    mao.forEach(carta => {
+    resultadoHTML += "<h2>Resultados</h2>";
+    resultadoHTML += "Mão válida. Calculando...<br>";
+    
+    // Pontuação Base e detalhes
+    cartasNaMao.forEach(carta => {
         pontuacaoBase += carta.pontos;
-        detalhes += `<p><strong>${carta.nome}</strong>: ${carta.pontos} pontos base.</p>`;
+        resultadoHTML += `${carta.nome}: ${carta.pontos} pontos base.<br>`;
     });
 
-    detalhes += `<hr><p><strong>Pontuação Base: ${pontuacaoBase}</strong></p><hr>`;
-    
-    // Passo 2: Bônus e Penalidades
-    mao.forEach(carta => {
-        let pontosCarta = 0;
-        let bonusString = "";
-        let penalidadeString = "";
-        
-        // Regra especial para 'É tudo a mesma Coisa'
-        if (carta.nome === "É tudo a mesma Coisa") {
-             if (mao.some(c => c.nome === "Ana Pimentão") && mao.some(c => c.nome === "Comprovadamente Perdida")) { pontosCarta += 10; bonusString += "+10 (Ana Pimentão + Comprovadamente Perdida). "; }
-             if (mao.some(c => c.nome === "Caixeta de Zócolo") && mao.some(c => c.nome === "Zócolo na Caixeta")) { pontosCarta += 10; bonusString += "+10 (Caixeta de Zócolo + Zócolo na Caixeta). "; }
-             if (mao.some(c => c.nome === "Uivo da Varanda") && mao.some(c => c.nome === "Tô Em Todas")) { pontosCarta += 10; bonusString += "+10 (Uivo da Varanda + Tô Em Todas). "; }
-             if (mao.some(c => c.nome === "Sósia do Caio") && coringasNaMao.includes("Amigo do Raul")) { pontosCarta += 10; bonusString += "+10 (Sósia do Caio + Amigo do Raul). "; }
-        }
+    // Contagem de tipos e tags para regras complexas
+    const contagemTipo = tipos.reduce((acc, tipo) => {
+        acc[tipo] = (acc[tipo] || 0) + 1;
+        return acc;
+    }, {});
+    const contagemTag = tags.reduce((acc, tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+        return acc;
+    }, {});
 
-        switch (carta.nome) {
-            case "Mochila Petrobras":
-                if (mao.some(c => c.nome === "Disney de Janeiro")) { pontosCarta -= 25; penalidadeString += "-25 (com Disney de Janeiro). "; }
-                break;
-            case "Nível":
-                if (temCursoDeFormacao) { penalidadeString += "Anulada por Curso de Formação. "; }
-                else {
-                    const vixEmPoNaMao = mao.filter(c => c.nome === "Vix em Pó").length;
-                    const festaAnualNaMao = mao.filter(c => c.nome === "FESTA ANUAL").length;
-                    pontosCarta += (vixEmPoNaMao + festaAnualNaMao) * 10;
-                    if (vixEmPoNaMao > 0) bonusString += `+${vixEmPoNaMao * 10} (Vix em Pó). `;
-                    if (festaAnualNaMao > 0) bonusString += `+${festaAnualNaMao * 10} (Festa Anual). `;
-                }
-                break;
-            case "CURSO DE FORMAÇÃO":
-                if (mao.some(c => c.nome === "Disney de Janeiro") || (temPC_Richard && !pcRichardAnulado) || mao.some(c => c.nome === "Lista de Presença")) { pontosCarta += 10; bonusString += "+10 (Disney de Janeiro, PC/Richard ou Lista de Presença). "; }
-                break;
-            case "CHÁ DE FRALDAS":
-                if (!mao.some(c => c.nome === "Pacote de Fralda")) { pontosCarta -= 10; penalidadeString += "-10 (sem Pacote de Fralda). "; }
-                if (mao.filter(c => c.tag === "Premium Care").length === 0) { penalidadeString += "Anulada sem Premium Care. "; }
-                break;
-            case "VISITA TÉCNICA":
-                if (!mao.some(c => c.nome === "EPI Completo")) { pontosCarta -= 10; penalidadeString += "-10 (sem EPI Completo). "; }
-                break;
-            case "FESTA ANUAL":
-                if (mao.some(c => c.tipo === "Local") || coringasNaMao.includes("T5 Honorário")) { pontosCarta += 10; bonusString += "+10 (com Local ou T5 Honorário). "; }
-                break;
-            case "ALMOÇÃO":
-            case "INVADE HOUSE":
-                if (mao.some(c => c.nome === "MaCaribe")) { pontosCarta += 20; bonusString += "+20 (com MaCaribe). "; }
-                break;
-            case "COFFEE DA CAROL":
-                const comprovadamentePerdida = mao.filter(c => c.nome === "Comprovadamente Perdida").length;
-                const chaDeFraldas = mao.filter(c => c.nome === "CHÁ DE FRALDAS").length;
-                pontosCarta += (comprovadamentePerdida + chaDeFraldas) * 15;
-                if (comprovadamentePerdida > 0) bonusString += `+${comprovadamentePerdida * 15} (Comprovadamente Perdida). `;
-                if (chaDeFraldas > 0) bonusString += `+${chaDeFraldas * 15} (Chá de Fraldas). `;
-                if (!mao.some(c => c.nome === "Café")) { pontosCarta -= 15; penalidadeString += "-15 (sem Café). "; }
-                break;
-            case "PRESENCIAL":
-            case "HOME-OFFICE":
-                if (mao.some(c => c.nome === "Pato Migratório")) { pontosCarta -= 10; penalidadeString += "-10 (com Pato Migratório). "; }
-                break;
-            case "Aplausos Constrangedores":
-                const numPersonagens = mao.filter(c => c.tipo === "Personagem").length;
-                const numAniversarioAnderson = mao.filter(c => c.nome === "ANIVERSÁRIO DO ANDERSON").length;
-                const numCursoFormacao = mao.filter(c => c.nome === "CURSO DE FORMAÇÃO").length;
-                pontosCarta += (numPersonagens + numAniversarioAnderson + numCursoFormacao) * 5;
-                bonusString += `+${pontosCarta} (por Personagens, Aniversário do Anderson e Curso de Formação). `;
-                break;
-            case "Contusão no Joelho":
-                if (!mao.some(c => c.nome === "Joabe-se Quem Puder")) {
-                    const numPersonagensAnulados = mao.filter(c => c.tipo === "Personagem" && c.nome !== "Joabe-se Quem Puder").length;
-                    pontosCarta -= numPersonagensAnulados * carta.pontos; // Anula os pontos do personagem
-                    detalhes += `<p style="color:red;">**Anulação:** Contusão no Joelho anula um personagem (Joabe-se Quem Puder não foi afetado).</p>`;
-                }
-                break;
-            case "Calebito Vai dar Certo":
-                const numPersonagensCalebito = mao.filter(c => c.tipo === "Personagem").length;
-                pontosCarta += numPersonagensCalebito * 5;
-                bonusString += `+${numPersonagensCalebito * 5} (por Personagens). `;
-                if (mao.some(c => c.nome === "Ana Pimentão") || mao.some(c => c.nome === "Farmácia")) { pontosCarta -= 10; penalidadeString += "-10 (com Ana Pimentão ou Farmácia). "; }
-                break;
-            case "BassaNews":
-                if (mao.some(c => c.nome === "Bassani Sindical")) { pontosCarta += 10; bonusString += "+10 (com Bassani Sindical). "; }
-                if (interacoesInput.includes("hoje é sexta-feira")) { pontosCarta -= 15; penalidadeString += "-15 (hoje é sexta-feira). "; }
-                break;
-            case "Feedback":
-                const numPersonagensFeedback = mao.filter(c => c.tipo === "Personagem" && c.nome !== "Gerente Feedback Jr").length;
-                pontosCarta -= numPersonagensFeedback * 5;
-                penalidadeString += `-${numPersonagensFeedback * 5} (por Personagens). `;
-                break;
-            case "Kit Churrasco":
-                const eventosComBonusKit = mao.filter(c => ["INVADE HOUSE", "ANIVERSÁRIO DO ANDERSON", "FESTA ANUAL"].includes(c.nome)).length;
-                pontosCarta += eventosComBonusKit * 10;
-                bonusString += `+${eventosComBonusKit * 10} (com Invade House, Aniversário do Anderson ou Festa Anual). `;
-                break;
-            case "Dados Conflitantes":
-                if (mao.some(c => c.nome === "CURSO DE FORMAÇÃO") || mao.some(c => c.nome === "ANIVERSÁRIO DO ANDERSON")) { pontosCarta -= 10; penalidadeString += "-10 (com Curso de Formação ou Aniversário do Anderson). "; }
-                break;
-            case "Não se preocupe com prova":
-                if (temCursoDeFormacao) {
-                    const numPersonagensProva = mao.filter(c => c.tipo === "Personagem").length;
-                    pontosCarta -= numPersonagensProva * 5;
-                    penalidadeString += `-${numPersonagensProva * 5} (com Curso de Formação). `;
-                }
-                break;
-            case "Segura, Peão!":
-                if (mao.some(c => c.nome === "MaCaribe")) { pontosCarta += 63; bonusString += "+63 (com MaCaribe). "; }
-                else if (mao.some(c => c.nome === "Vix em Pó")) { pontosCarta += 53; bonusString += "+53 (com Vix em Pó). "; }
-                else if (mao.some(c => c.nome === "Grande Nordeste")) { pontosCarta += 43; bonusString += "+43 (com Grande Nordeste). "; }
-                break;
-            case "Pão de Queijo":
-                const numEventosPao = mao.filter(c => c.tipo === "Evento").length;
-                pontosCarta += numEventosPao * 5;
-                bonusString += `+${numEventosPao * 5} (por Eventos). `;
-                break;
-            case "Pato Migratório":
-                const eventosPato = mao.filter(c => ["INVADE HOUSE", "ANIVERSÁRIO DO ANDERSON", "ALMOÇÃO", "FESTA ANUAL"].includes(c.nome)).length;
-                pontosCarta += eventosPato * 10;
-                bonusString += `+${eventosPato * 10} (com Invade House, Aniversário do Anderson, Almoção, Festa Anual). `;
-                break;
-            case "Ordem de Grandeza":
-                if (mao.some(c => c.nome === "Número Mágico")) { pontosCarta += 10; bonusString += "+10 (com Número Mágico). "; }
-                break;
-            case "Resumo da Carol":
-                if (temCursoDeFormacao) {
-                    const numPersonagensResumo = mao.filter(c => c.tipo === "Personagem").length;
-                    pontosCarta += numPersonagensResumo * 10;
-                    bonusString += `+${numPersonagensResumo * 10} (com Curso de Formação). `;
-                }
-                break;
-            case "Bolo de Aniversário":
-                const eventosBolo = mao.filter(c => c.tipo === "Evento" && !["CURSO DE FORMAÇÃO", "PRESENCIAL", "HOME-OFFICE"].includes(c.nome)).length;
-                pontosCarta += eventosBolo * 10;
-                bonusString += `+${eventosBolo * 10} (com Eventos específicos). `;
-                break;
-            case "Check-list":
-                const eventosChecklist = mao.filter(c => ["ANIVERSÁRIO DO ANDERSON", "CURSO DE FORMAÇÃO", "HOME-OFFICE", "PRESENCIAL"].includes(c.nome)).length;
-                pontosCarta += eventosChecklist * 5;
-                bonusString += `+${eventosChecklist * 5} (com Eventos específicos). `;
-                break;
-            case "Câmera Ligada":
-                const numPersonagensCamera = mao.filter(c => c.tipo === "Personagem" && c.nome !== "Cameraman").length;
-                pontosCarta -= numPersonagensCamera * 5;
-                penalidadeString += `-${numPersonagensCamera * 5} (com Personagens). `;
-                break;
-            case "Day Use":
-                const numPersonagensDayUse = mao.filter(c => c.tipo === "Personagem" && !["Segue o Link", "Ana Pimentão"].includes(c.nome)).length;
-                pontosCarta -= numPersonagensDayUse * 5;
-                penalidadeString += `-${numPersonagensDayUse * 5} (com Personagens). `;
-                break;
-            case "Piada Devastadora":
-                const numEventosPiada = mao.filter(c => c.tipo === "Evento").length;
-                pontosCarta += numEventosPiada * 25;
-                bonusString += `+${numEventosPiada * 25} (com Eventos). `;
-                break;
-            case "Filtro Solar":
-                if (mao.some(c => c.nome === "Gasparzinho Sundown")) { pontosCarta += 10; bonusString += "+10 (com Gasparzinho Sundown). "; }
-                break;
-            case "EPI Completo":
-                if (mao.some(c => c.nome === "Pergunta Sem Timing")) { pontosCarta -= 25; penalidadeString += "-25 (com Pergunta Sem Timing). "; }
-                break;
-            case "Strip no Jet de Swap":
-            case "Tava Embarcado?":
-            case "Discussão Pós-prova":
-                const numPersonagensItem = mao.filter(c => c.tipo === "Personagem").length;
-                pontosCarta -= numPersonagensItem * 5;
-                penalidadeString += `-${numPersonagensItem * 5} (com Personagens). `;
-                break;
-            case "Pergunta Sem Timing":
-                if (temCursoDeFormacao) {
-                    pontosCarta -= 15;
-                    penalidadeString += "-15 (com Curso de Formação). ";
-                }
-                break;
-            case "Jaqueta no Verão":
-                if (temPC_Richard && !pcRichardAnulado) { pontosCarta += 10; bonusString += "+10 (com PC/Richard). "; }
-                break;
-            case "Enquete":
-                const numEventosEnquete = mao.filter(c => c.tipo === "Evento").length;
-                const numPresentesEnquete = mao.filter(c => c.tag === "Presente").length;
-                pontosCarta -= numEventosEnquete * 10 + numPresentesEnquete * 5;
-                penalidadeString += `-${numEventosEnquete * 10} (com Eventos) e -${numPresentesEnquete * 5} (com Presentes). `;
-                break;
-            case "Café":
-                const eventosComCafe = mao.filter(c => ["Coffee da Carol", "CURSO DE FORMAÇÃO", "PRESENCIAL", "ANIVERSÁRIO DO ANDERSON"].includes(c.nome)).length;
-                pontosCarta += eventosComCafe * 10;
-                bonusString += `+${eventosComCafe * 10} (com Eventos). `;
-                break;
-            case "Chaveiro Ofensivo":
-                if (temPC_Richard) { pontosCarta -= coringasNaMao.includes("PC/Richard") ? 0 : 20; penalidadeString += "Anula os pontos de PC/Richard. "; }
-                break;
-            case "Herbalife":
-                const numAlvosHerbalife = mao.filter(c => ["Ana Pimentão", "Clara Herculino", "Prefeito Pimenta"].includes(c.nome)).length;
-                pontosCarta += numAlvosHerbalife * 10;
-                bonusString += `+${numAlvosHerbalife * 10} (com Ana Pimentão, Clara Herculino ou Prefeito Pimenta). `;
-                break;
-            case "Pacote de Fralda":
-                if (mao.some(c => c.nome === "CHÁ DE FRALDAS")) { pontosCarta += 10; bonusString += "+10 (com Chá de Fraldas). "; }
-                const numPersonagensPacote = mao.filter(c => c.tipo === "Personagem" && c.tag !== "Premium Care").length;
-                pontosCarta -= numPersonagensPacote * 5;
-                penalidadeString += `-${numPersonagensPacote * 5} (com Personagens não Premium Care). `;
-                break;
-            case "Disney de Janeiro":
-                if (interacoesInput.includes("estava de chinelo") || interacoesInput.includes("tomando matte")) { pontosCarta += 10; bonusString += "+10 (ação do jogador). "; }
-                break;
-            case "Nikiti na Panela":
-                if (interacoesInput.includes("estava vendo um grande corpo de agua") || interacoesInput.includes("estava vendo o corcovado")) { pontosCarta += 10; bonusString += "+10 (ação do jogador). "; }
-                break;
-            case "Vix em Pó":
-                if (interacoesInput.includes("estava comendo caranguejo") || interacoesInput.includes("tinha po no pe/na roupa")) { pontosCarta += 10; bonusString += "+10 (ação do jogador). "; }
-                break;
-            case "Grande Nordeste":
-                if (interacoesInput.includes("estava pegando sol") || interacoesInput.includes("bebendo agua")) { pontosCarta += 10; bonusString += "+10 (ação do jogador). "; }
-                break;
-            case "MaCaribe":
-                if (interacoesInput.includes("estava de camiseta")) { pontosCarta += 10; bonusString += "+10 (ação do jogador). "; }
-                break;
-            case "Itabompraí":
-                if (interacoesInput.includes("estava de bota") || mao.some(c => c.nome === "EPI Completo")) { pontosCarta += 20; bonusString += "+20 (ação do jogador ou com EPI Completo). "; }
-                break;
-            case "Vereadora":
-                const outrosPersonagensVereadora = mao.filter(c => c.tipo === "Personagem" && c.nome !== carta.nome).length;
-                pontosCarta += outrosPersonagensVereadora * 5;
-                bonusString += `+${outrosPersonagensVereadora * 5} (por outros Personagens). `;
-                if (mao.some(c => c.tipo === "Local" && c.nome !== "Disney de Janeiro")) { pontosCarta -= 10; penalidadeString += "-10 (com Local não Disney de Janeiro). "; }
-                break;
-            case "MagnâniMO":
-                if (interacoesInput.includes("fez uma acrobacia")) { pontosCarta += 10; bonusString += "+10 (fez acrobacia). "; }
-                if (interacoesInput.includes("chorou no futebol")) { pontosCarta -= 10; penalidadeString += "-10 (chorou no futebol). "; }
-                break;
-            case "Rainha do Kahoot":
-                if (mao.some(c => c.nome === "Kahoot")) { pontosCarta += 10; bonusString += "+10 (com Kahoot). "; }
-                const numSociaisRainha = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisRainha * 10;
-                penalidadeString += `-${numSociaisRainha * 10} (por Sociais). `;
-                break;
-            case "Caô Amigo":
-                if (coringasNaMao.includes("Amigo do Raul")) { pontosCarta += 15; bonusString += "+15 (com Amigo do Raul). "; }
-                const numSociaisCao = mao.filter(c => c.tag === "Social").length;
-                pontosCarta += numSociaisCao * 5;
-                bonusString += `+${numSociaisCao * 5} (por Sociais). `;
-                if (!(mao.some(c => c.nome === "Telepata de Ni") && mao.some(c => c.nome === "MãeCaé Tips"))) { pontosCarta -= 10; penalidadeString += "-10 (sem triplo R). "; }
-                break;
-            case "História Sem Fim":
-                if (mao.some(c => c.nome === "Procura Sem Fim")) { pontosCarta += 80; bonusString += "+80 (com Procura Sem Fim). "; }
-                if (mao.filter(c => c.nome.includes("Renan")).length < 3) { pontosCarta -= 10; penalidadeString += "-10 (sem 3 Renans). "; }
-                break;
-            case "MãeCaé Tips":
-                if (mao.some(c => c.nome === "Telepata de Ni") && mao.some(c => c.nome === "Caô Amigo")) { pontosCarta += 10; bonusString += "+10 (com triplo R). "; }
-                const numSociaisMaca = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisMaca * 10;
-                penalidadeString += `-${numSociaisMaca * 10} (por Sociais). `;
-                break;
-            case "Scheid Filho":
-                if (mao.some(c => c.nome === "Kahoot")) { pontosCarta += 10; bonusString += "+10 (com Kahoot). "; }
-                const numFilhos = mao.filter(c => c.nome.includes("Filho")).length;
-                pontosCarta += numFilhos * 15;
-                bonusString += `+${numFilhos * 15} (por Filho). `;
-                const numSociaisScheid = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisScheid * 15;
-                penalidadeString += `-${numSociaisScheid * 15} (por Sociais). `;
-                break;
-            case "Tia Clarisse":
-            case "Jorge Veludo":
-            case "Mari-RUN-a":
-            case "Toddynho":
-            case "CarioCúcho":
-            case "Tranquilo?":
-            case "Mochila de Alho":
-            case "Bigode Sem Tempo":
-            case "Carioca do Brejo":
-                if (mao.some(c => c.nome === "Disney de Janeiro")) { pontosCarta += 10; bonusString += "+10 (com Disney de Janeiro). "; }
-                if (carta.nome !== "Carioca do Brejo" && mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Comprovadamente Perdida":
-                const perdidos = mao.filter(c => c.tag === "Perdido").length;
-                if (perdidos === 3) { pontosCarta += 30; bonusString += "+30 (com os três Perdidos). "; }
-                if (perdidos < 3) { pontosCarta -= 10; penalidadeString += "-10 (sem 3 Perdidos). "; }
-                break;
-            case "Milionário Disfarçado":
-                if (mao.some(c => c.nome === "Contador de Moedas")) { pontosCarta += 50; bonusString += "+50 (com Contador de Moedas). "; }
-                if (mao.some(c => c.nome === "Segura, Peão!")) { pontosCarta -= 10; penalidadeString += "-10 (com Segura, Peão!). "; }
-                break;
-            case "Bassani Sindical":
-                if (mao.some(c => c.nome === "Dados Conflitantes")) { pontosCarta += 10; bonusString += "+10 (com Dados Conflitantes). "; }
-                if (mao.some(c => c.tag === "Social") || mao.some(c => c.nome === "MaCaribe")) { pontosCarta -= 10; penalidadeString += "-10 (com Social ou MaCaribe). "; }
-                break;
-            case "Feliz Aniversário":
-                const numBolo = mao.filter(c => c.nome === "Bolo de Aniversário").length;
-                const numEvento = mao.filter(c => c.tipo === "Evento").length;
-                const numMaCaribe = mao.filter(c => c.nome === "MaCaribe").length;
-                const numChecklist = mao.filter(c => c.nome === "Check-list").length;
-                pontosCarta += (numBolo + numEvento + numMaCaribe + numChecklist) * 10;
-                bonusString += `+${pontosCarta} (com Bolo, Evento, MaCaribe ou Check-list). `;
-                if (mao.some(c => c.nome === "Pergunta Sem Timing") || !mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Pergunta Sem Timing ou sem Social). "; }
-                break;
-            case "Sósia do Caio":
-                if (mao.some(c => c.nome === "Disney de Janeiro")) { pontosCarta += 10; bonusString += "+10 (com Disney de Janeiro). "; }
-                else if (mao.some(c => c.nome === "MaCaribe")) { pontosCarta += 5; bonusString += "+5 (com MaCaribe). "; }
-                if (mao.some(c => c.nome === "Café")) { pontosCarta -= 10; penalidadeString += "-10 (com Café). "; }
-                break;
-            case "Estratégia Cruel":
-            case "Série B":
-            case "A Quem Muitos Amaro":
-                if (mao.some(c => c.nome === "Vix em Pó")) { pontosCarta += 10; bonusString += "+10 (com Vix em Pó). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Tromps dos Magos":
-            case "Soneca Russa":
-            case "Cachacinha":
-            case "Soneca Infinita":
-                const numNikitiTromps = mao.filter(c => c.nome === "Nikiti na Panela").length;
-                const numSoninho = mao.filter(c => c.tag === "Soninho").length - 1;
-                pontosCarta += numNikitiTromps * 10 + numSoninho * 10;
-                bonusString += `+${numNikitiTromps * 10} (com Nikiti na Panela) e +${numSoninho * 10} (com outro Soninho). `;
-                if (mao.some(c => c.tag === "Social") && carta.nome !== "Cachacinha") { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                if (carta.nome === "Soneca Infinita" && mao.some(c => c.nome === "Barrinha de Cereal")) { pontosCarta -= 10; penalidadeString += "-10 (com Barrinha de Cereal). "; }
-                if (["Soneca Russa", "Cachacinha"].includes(carta.nome) && mao.some(c => c.nome === "Pergunta Sem Timing")) { pontosCarta -= 10; penalidadeString += "-10 (com Pergunta Sem Timing). "; }
-                break;
-            case "Número Mágico":
-                if (mao.some(c => c.nome === "Ordem de Grandeza")) { pontosCarta += 10; bonusString += "+10 (com Ordem de Grandeza). "; }
-                if (!interacoesInput.includes("tentou um valor aproximado")) { pontosCarta -= 10; penalidadeString += "-10 (não tentou valor aproximado). "; }
-                break;
-            case "Prefeito Pimenta":
-                const numNikitiPrefeito = mao.filter(c => c.nome === "Nikiti na Panela").length;
-                const numCarona = coringasNaMao.includes("Carona") ? 1 : 0;
-                pontosCarta += numNikitiPrefeito * 10 + numCarona * 10;
-                bonusString += `+${numNikitiPrefeito * 10} (com Nikiti na Panela) e +${numCarona * 10} (com Carona). `;
-                const numSociaisPimenta = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisPimenta * 10;
-                penalidadeString += `-${numSociaisPimenta * 10} (com Sociais). `;
-                break;
-            case "Guitarra de Suprimentos":
-                if (mao.some(c => c.nome === "PDV")) { pontosCarta += 80; bonusString += "+80 (com PDV). "; }
-                if (mao.some(c => c.nome === "General Trigus Aurelius")) { pontosCarta += 10; bonusString += "+10 (com General Trigus Aurelius). "; }
-                const numSociaisGuitarra = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisGuitarra * 10;
-                penalidadeString += `-${numSociaisGuitarra * 10} (com Sociais). `;
-                break;
-            case "Joabe-se Quem Puder":
-                if (coringasNaMao.includes("Lista de Presença")) { pontosCarta += 10; bonusString += "+10 (com Lista de Presença). "; }
-                const numSociaisJoabe = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisJoabe * 10;
-                penalidadeString += `-${numSociaisJoabe * 10} (com Sociais). `;
-                break;
-            case "Super Sincera":
-                if (mao.some(c => c.nome === "Guitarra de Suprimentos")) { pontosCarta += 10; bonusString += "+10 (com Guitarra de Suprimentos). "; }
-                const numSociaisSincera = mao.filter(c => c.tag === "Social").length;
-                pontosCarta -= numSociaisSincera * 10;
-                penalidadeString += `-${numSociaisSincera * 10} (com Sociais). `;
-                break;
-            case "Vamos Marcar":
-            case "Olefinas":
-                if (mao.some(c => c.nome === "Pato Migratório")) { pontosCarta += 10; bonusString += "+10 (com Pato Migratório). "; }
-                if (mao.some(c => c.tag === "Social") && carta.nome === "Vamos Marcar") { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                if (mao.some(c => c.nome === "Itabompraí") && carta.nome === "Olefinas") { pontosCarta -= 10; penalidadeString += "-10 (com Itabompraí). "; }
-                break;
-            case "Colheita Feliz":
-                if (mao.some(c => c.nome === "Pato Migratório")) { pontosCarta += 10; bonusString += "+10 (com Pato Migratório). "; }
-                const alvosColheita = mao.filter(c => ["Shinobi Campista", "PETagoga", "Vereadora"].includes(c.nome)).length;
-                pontosCarta += alvosColheita * 5;
-                bonusString += `+${alvosColheita * 5} (com Shinobi Campista, PETagoga e Vereadora). `;
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Raulzito":
-            case "Shinobi Campista":
-                const numPetrobanda = mao.filter(c => c.tag === "PetroBanda").length - 1;
-                pontosCarta += numPetrobanda * 10;
-                bonusString += `+${numPetrobanda * 10} (com outro PetroBanda). `;
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Renan Preso":
-                if (mao.some(c => c.nome === "Pergunta Sem Timing")) { pontosCarta += 10; bonusString += "+10 (com Pergunta Sem Timing). "; }
-                if (mao.some(c => c.nome === "Renan Livre Leve")) { pontosCarta += 5; bonusString += "+5 (com Renan Livre Leve). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Super Mario on IceCream":
-                if (mao.some(c => c.nome === "Não pode ser real") || mao.some(c => c.nome === "Calebito Vai dar Certo")) { pontosCarta += 10; bonusString += "+10 (com Não pode ser real ou Calebito Vai dar Certo). "; }
-                if (mao.some(c => c.nome === "Wario")) { pontosCarta -= 10; penalidadeString += "-10 (com Wario). "; }
-                break;
-            case "Telepata de Ni":
-                if (mao.some(c => c.nome === "Caô Amigo") && mao.some(c => c.nome === "MãeCaé Tips")) { pontosCarta += 10; bonusString += "+10 (com triplo R). "; }
-                if (mao.some(c => c.nome === "Rita Lee")) { pontosCarta -= 10; penalidadeString += "-10 (com Rita Lee). "; }
-                break;
-            case "Espião do PC":
-                if (mao.some(c => c.nome === "Apresentação do Projeto")) { pontosCarta += 50; bonusString += "+50 (com Apresentação do Projeto). "; }
-                const numOutrosPersonagens = mao.filter(c => c.tipo === "Personagem" && c.nome !== carta.nome).length;
-                pontosCarta -= numOutrosPersonagens * 5;
-                penalidadeString += `-${numOutrosPersonagens * 5} (por outros Personagens). `;
-                break;
-            case "Bruce Weiner":
-                if (mao.some(c => c.nome === "Alfred")) { pontosCarta += 50; bonusString += "+50 (com Alfred). "; }
-                if (!mao.some(c => c.nome === "Labrador")) { pontosCarta -= 10; penalidadeString += "-10 (sem Labrador). "; }
-                break;
-            case "CaretaPool":
-                if (mao.some(c => c.nome === "Cruelrine")) { pontosCarta += 10; bonusString += "+10 (com Cruelrine). "; }
-                if (mao.some(c => c.nome === "Pato Migratório")) { pontosCarta -= 10; penalidadeString += "-10 (com Pato Migratório). "; }
-                break;
-            case "Média de Ouro":
-                const numEventosM = mao.filter(c => ["CURSO DE FORMAÇÃO", "Nikiti na Panela"].includes(c.nome)).length;
-                pontosCarta += numEventosM * 10;
-                bonusString += `+${numEventosM * 10} (com Curso de Formação ou Nikiti na Panela). `;
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Clara Herculino":
-                if (mao.some(c => c.nome === "Nikiti na Panela")) { pontosCarta += 10; bonusString += "+10 (com Nikiti na Panela). "; }
-                if (mao.some(c => c.tag === "Social") || mao.some(c => c.nome === "Enquete")) { pontosCarta -= 10; penalidadeString += "-10 (com Social ou Enquete). "; }
-                break;
-            case "Farmácia":
-                const numOutrosPersonagensF = mao.filter(c => c.tipo === "Personagem" && c.nome !== carta.nome).length;
-                pontosCarta += numOutrosPersonagensF * 5;
-                bonusString += `+${numOutrosPersonagensF * 5} (por outros Personagens). `;
-                break;
-            case "Tô Em Todas":
-                const eventosTTE = mao.filter(c => c.tipo === "Evento").length;
-                const locaisTTE = mao.filter(c => c.tipo === "Local").length;
-                if (eventosTTE > 0 && locaisTTE > 0) { pontosCarta += 10; bonusString += "+10 (com Evento e Local). "; }
-                if (mao.some(c => c.nome === "Aplausos Constrangedores")) { pontosCarta -= 15; penalidadeString += "-15 (com Aplausos Constrangedores). "; }
-                break;
-            case "Pai do Regato":
-                if (mao.some(c => c.nome === "Camiseto")) { pontosCarta += 10; bonusString += "+10 (com Camiseto). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Praieira de Minas":
-                if (mao.some(c => c.nome === "Vix em Pó")) { pontosCarta += 10; bonusString += "+10 (com Vix em Pó). "; }
-                if (mao.some(c => c.nome === "Série B")) { pontosCarta += 10; bonusString += "+10 (com Série B). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Solução Caseira":
-                const eventosSC = mao.filter(c => ["ANIVERSÁRIO DO ANDERSON", "FESTA ANUAL"].includes(c.nome)).length;
-                pontosCarta += eventosSC * 10;
-                bonusString += `+${eventosSC * 10} (com Aniversário do Anderson ou Festa Anual). `;
-                if (interacoesInput.includes("tirou a barba")) { pontosCarta -= 10; penalidadeString += "-10 (tirou a barba). "; }
-                break;
-            case "Rei da Rifa":
-                if (mao.some(c => c.nome === "Rifa")) { pontosCarta += 50; bonusString += "+50 (com Rifa). "; }
-                if (temCursoDeFormacao) { pontosCarta += 10; bonusString += "+10 (com Curso de Formação). "; }
-                if (interacoesInput.includes("teve que repetir a explicação da matéria")) { pontosCarta -= 10; penalidadeString += "-10 (teve que repetir explicação). "; }
-                break;
-            case "Aí Vem O Desespero":
-                if (mao.some(c => c.nome === "Discussão Pós-prova")) { pontosCarta += 10; bonusString += "+10 (com Discussão Pós-prova). "; }
-                if (mao.some(c => c.tag === "Social") || mao.some(c => c.nome === "MaCaribe")) { pontosCarta -= 10; penalidadeString += "-10 (com Social ou MaCaribe). "; }
-                break;
-            case "ServiceNat":
-                const outrosPersonagensSN = mao.filter(c => c.tipo === "Personagem" && c.nome !== carta.nome).length;
-                pontosCarta += outrosPersonagensSN * 5;
-                bonusString += `+${outrosPersonagensSN * 5} (por outros Personagens). `;
-                if (mao.some(c => c.nome === "Nikiti na Panela")) { pontosCarta += 10; bonusString += "+10 (com Nikiti na Panela). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Luiz de Lente":
-                if (mao.some(c => c.nome === "Foto de Óculos")) { pontosCarta += 50; bonusString += "+50 (com Foto de Óculos). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Gasparzinho Sundown":
-                if (mao.some(c => c.nome === "Filtro Solar")) { pontosCarta += 10; bonusString += "+10 (com Filtro Solar). "; }
-                if (!mao.some(c => c.nome === "EPI Completo")) { pontosCarta -= 10; penalidadeString += "-10 (sem EPI Completo). "; }
-                break;
-            case "Cruelrine":
-                if (mao.some(c => c.nome === "Caretapool")) { pontosCarta += 10; bonusString += "+10 (com Caretapool). "; }
-                if (mao.filter(c => c.tag === "Soninho").length > 0) { pontosCarta -= 10; penalidadeString += "-10 (com Soninho). "; }
-                break;
-            case "Gerente Feedback Jr":
-                if (mao.some(c => c.nome === "Itabompraí")) { pontosCarta += 10; bonusString += "+10 (com Itabompraí). "; }
-                if (!mao.some(c => c.nome === "EPI Completo")) { pontosCarta -= 10; penalidadeString += "-10 (sem EPI Completo). "; }
-                break;
-            case "New Saulo":
-                if (mao.some(c => c.nome === "Kit Churrasco")) { pontosCarta += 10; bonusString += "+10 (com Kit Churrasco). "; }
-                if (mao.some(c => c.tag === "Social") && interacoesInput.includes("precisou pegar uber")) { pontosCarta -= 10; penalidadeString += "-10 (precisou pegar Uber). "; }
-                break;
-            case "O Infiltrado":
-                if (mao.some(c => c.nome === "Treinamento sem Convite")) { pontosCarta += 50; bonusString += "+50 (com Treinamento sem Convite). "; }
-                if (mao.some(c => c.nome === "Saco Preto")) { pontosCarta -= 10; penalidadeString += "-10 (com Saco Preto). "; }
-                break;
-            case "Camiseto":
-                if (mao.some(c => c.nome === "Pai do Regato") || mao.some(c => c.nome === "Feliz Aniversário")) { pontosCarta += 10; bonusString += "+10 (com Pai do Regato ou Feliz Aniversário). "; }
-                if (!interacoesInput.includes("estava de bermuda e/ou regata")) { pontosCarta -= 10; penalidadeString += "-10 (não estava de bermuda/regata). "; }
-                break;
-            case "Renan Livre Leve":
-                const numSociaisRenanL = mao.filter(c => c.tag === "Social").length;
-                pontosCarta += numSociaisRenanL * 10;
-                bonusString += `+${numSociaisRenanL * 10} (com Sociais). `;
-                if (mao.some(c => c.nome === "Renan Preso")) { pontosCarta += 5; bonusString += "+5 (com Renan Preso). "; }
-                if (mao.filter(c => c.nome.includes("Renan")).length < 3) { pontosCarta -= 10; penalidadeString += "-10 (sem 3 Renans). "; }
-                break;
-            case "Engenheiro Jr Sênior":
-                if (interacoesInput.includes("personagem mais antigo na mao")) { pontosCarta += 10; bonusString += "+10 (personagem mais antigo). "; }
-                if (mao.some(c => c.nome === "Neymar Contundido")) { pontosCarta -= 10; penalidadeString += "-10 (com Neymar Contundido). "; }
-                break;
-            case "Meu nome não é Robison":
-                if (coringasNaMao.includes("Presencial de Outra Cidade")) { pontosCarta += 10; bonusString += "+10 (com Presencial de Outra Cidade). "; }
-                if (interacoesInput.includes("jogador com nome composto")) { pontosCarta -= 10; penalidadeString += "-10 (jogador com nome composto). "; }
-                break;
-            case "Uivo da Varanda":
-                const numSociaisUivo = mao.filter(c => c.tag === "Social").length;
-                pontosCarta += numSociaisUivo * 10;
-                bonusString += `+${numSociaisUivo * 10} (com Sociais). `;
-                if (temCursoDeFormacao) { pontosCarta -= 10; penalidadeString += "-10 (com Curso de Formação). "; }
-                break;
-            case "Enquetes Everywhere":
-                if (mao.some(c => c.nome === "Enquete")) { pontosCarta += 10; bonusString += "+10 (com Enquete). "; }
-                if (mao.some(c => c.nome === "Cameraman")) { pontosCarta += 5; bonusString += "+5 (com Cameraman). "; }
-                if (!mao.some(c => c.nome === "Mostra o RG")) { pontosCarta -= 5; penalidadeString += "-5 (sem Mostra o RG). "; }
-                break;
-            case "Come Nada":
-                if (mao.some(c => c.nome === "Caretapool")) { pontosCarta += 10; bonusString += "+10 (com Caretapool). "; }
-                const numAlimentoTrigo = mao.filter(c => c.tag === "Trigo" || c.tag === "Alimento").length;
-                pontosCarta -= numAlimentoTrigo * 10;
-                penalidadeString += `-${numAlimentoTrigo * 10} (com Trigo ou Alimento). `;
-                break;
-            case "Ana Pimentão":
-            case "Farmácia":
-            case "Segue o Link":
-                const outrosPersonagensGeral = mao.filter(c => c.tipo === "Personagem" && c.nome !== carta.nome).length;
-                pontosCarta += outrosPersonagensGeral * 5;
-                bonusString += `+${outrosPersonagensGeral * 5} (por outros Personagens). `;
-                break;
-            case "Trompete Tímido":
-                if (mao.some(c => c.nome === "Shinobi Campista")) { pontosCarta += 10; bonusString += "+10 (com Shinobi Campista). "; }
-                if (mao.some(c => c.nome === "MaCaribe")) { pontosCarta -= 10; penalidadeString += "-10 (com MaCaribe). "; }
-                break;
-            case "Humorista Espião":
-                const alvosHumorista = mao.filter(c => ["Nikiti na Panela", "ANIVERSÁRIO DO ANDERSON", "FESTA ANUAL"].includes(c.nome)).length;
-                pontosCarta += alvosHumorista * 10;
-                bonusString += `+${alvosHumorista * 10} (com Nikiti, Aniversário ou Festa Anual). `;
-                if (!mao.some(c => c.nome === "Nikiti na Panela")) { pontosCarta -= 10; penalidadeString += "-10 (sem Nikiti na Panela). "; }
-                break;
-            case "Manager Face":
-                if (coringasNaMao.includes("Presencial de Outra Cidade")) { pontosCarta += 10; bonusString += "+10 (com Presencial de Outra Cidade). "; }
-                if (!interacoesInput.includes("fez cara de gerente")) { pontosCarta -= 10; penalidadeString += "-10 (não fez cara de gerente). "; }
-                break;
-            case "Skin Care Maromba":
-                if (mao.some(c => c.nome === "Grande Nordeste")) { pontosCarta += 10; bonusString += "+10 (com Grande Nordeste). "; }
-                if (!interacoesInput.includes("treinou hoje")) { pontosCarta -= 10; penalidadeString += "-10 (não treinou hoje). "; }
-                break;
-            case "Mostra o RG":
-                if (mao.some(c => c.nome === "Enquetes Everywhere") || mao.some(c => c.nome === "Cameraman")) { pontosCarta += 5; bonusString += "+5 (com Enquetes Everywhere ou Cameraman). "; }
-                if (!mao.some(c => c.nome === "Atrasilda")) { pontosCarta -= 5; penalidadeString += "-5 (sem Atrasilda). "; }
-                break;
-            case "Eu Sou A Lenda":
-                if (mao.some(c => c.nome === "Comprovante")) { pontosCarta += 15; bonusString += "+15 (com Comprovante). "; }
-                if (mao.some(c => c.nome === "Disney de Janeiro")) { pontosCarta -= 10; penalidadeString += "-10 (com Disney de Janeiro). "; }
-                break;
-            case "Max Milhas":
-                if (interacoesInput.includes("cantou por 10s")) { pontosCarta += 10; bonusString += "+10 (cantou por 10s). "; }
-                if (interacoesInput.includes("nao voou/voar")) { pontosCarta -= 10; penalidadeString += "-10 (não voou). "; }
-                break;
-            case "Atrasilda":
-                if (mao.some(c => c.nome === "Mostra o RG") || mao.some(c => c.nome === "Enquetes Everywhere")) { pontosCarta += 5; bonusString += "+5 (com Mostra o RG ou Enquetes Everywhere). "; }
-                if (!mao.some(c => c.nome === "Cameraman")) { pontosCarta -= 10; penalidadeString += "-10 (sem Cameraman). "; }
-                break;
-            case "Jogador Colombiano":
-                if (mao.some(c => c.nome === "Contusão no Joelho")) { pontosCarta += 20; bonusString += "+20 (com Contusão no Joelho). "; }
-                if (interacoesInput.includes("nunca assistiu a serie narcos")) { pontosCarta -= 10; penalidadeString += "-10 (não assistiu Narcos). "; }
-                break;
-            case "Esqueceram de Mim":
-                if (interacoesInput.includes("celular >79%")) { pontosCarta += 10; bonusString += "+10 (celular >79%). "; }
-                if (interacoesInput.includes("veio de onibus de viagem")) { pontosCarta -= 10; penalidadeString += "-10 (veio de onibus). "; }
-                break;
-            case "Zócolo na Caixeta":
-            case "Caixeta de Zócolo":
-                if (mao.some(c => c.nome === "Piada Devastadora")) { pontosCarta += 10; bonusString += "+10 (com Piada Devastadora). "; }
-                if (mao.some(c => c.nome === "Pergunta Sem Timing")) { pontosCarta -= 10; penalidadeString += "-10 (com Pergunta Sem Timing). "; }
-                break;
-            case "Cameraman":
-                if (mao.some(c => c.nome === "Atrasilda")) { pontosCarta += 10; bonusString += "+10 (com Atrasilda). "; }
-                if (mao.some(c => c.nome === "Mostra o RG")) { pontosCarta += 5; bonusString += "+5 (com Mostra o RG). "; }
-                if (!mao.some(c => c.nome === "Câmera Ligada")) { pontosCarta -= 10; penalidadeString += "-10 (sem Câmera Ligada). "; }
-                break;
-            case "Labrador":
-                if (mao.some(c => c.nome === "Bruce Weiner")) { pontosCarta += 10; bonusString += "+10 (com Bruce Weiner). "; }
-                if (mao.filter(c => c.tag === "Soninho").length > 0) { pontosCarta -= 10; penalidadeString += "-10 (com Soninho). "; }
-                break;
-            case "Hermano Mullets":
-                if (coringasNaMao.includes("Presencial de Outra Cidade")) { pontosCarta += 15; bonusString += "+15 (com Presencial de Outra Cidade). "; }
-                if (mao.some(c => c.nome === "PRESENCIAL")) { pontosCarta -= 15; penalidadeString += "-15 (com Presencial). "; }
-                break;
-            case "Laboratórios Medley":
-                if (mao.some(c => c.nome === "Grande Nordeste")) { pontosCarta += 10; bonusString += "+10 (com Grande Nordeste). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Laboratórios Achè":
-                if (mao.some(c => c.nome === "Laboratórios Medley")) { pontosCarta += 10; bonusString += "+10 (com Laboratórios Medley). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "Ricardo Nervosinho":
-                const eventosRicardo = mao.filter(c => c.tipo === "Evento").length;
-                const maCaribeRicardo = mao.some(c => c.nome === "MaCaribe");
-                if (eventosRicardo > 0 || maCaribeRicardo) {
-                    pontosCarta += 10;
-                    bonusString += "+10 (com Evento ou MaCaribe). ";
-                }
-                if (!mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (sem Social). "; }
-                break;
-            case "Doceira de Nikiti":
-            case "Mexido, Não Batido":
-                if (mao.some(c => c.nome === "Nikiti na Panela")) { pontosCarta += 10; bonusString += "+10 (com Nikiti na Panela). "; }
-                if (mao.some(c => c.tag === "Social")) { pontosCarta -= 10; penalidadeString += "-10 (com Social). "; }
-                break;
-            case "General Trigus Aurelius":
-                if (mao.some(c => c.nome === "Pão de Queijo")) { pontosCarta += 15; bonusString += "+15 (com Pão de Queijo). "; }
-                if (mao.some(c => c.tag === "Social") || mao.some(c => c.nome === "MaCaribe")) { pontosCarta += 5; bonusString += "+5 (com MaCaribe ou Social). "; }
-                const numTrigo = mao.filter(c => c.tag === "Trigo").length;
-                pontosCarta -= numTrigo * 10;
-                penalidadeString += `-${numTrigo * 10} (com Trigo). `;
-                break;
-            case "PETagoga":
-                if (mao.some(c => c.nome === "Vereadora")) { pontosCarta += 10; bonusString += "+10 (com Vereadora). "; }
-                const alvosPETagoga = mao.filter(c => ["Colheita Feliz", "Shinobi Campista", "PET"].includes(c.nome)).length;
-                pontosCarta += alvosPETagoga * 5;
-                bonusString += `+${alvosPETagoga * 5} (com Colheita Feliz, Shinobi Campista e PET). `;
-                break;
-            case "Bibliotecário":
-                if (mao.some(c => c.nome === "Biblioteca do EDIBH")) { pontosCarta += 50; bonusString += "+50 (com Biblioteca do EDIBH). "; }
-                if (mao.some(c => c.nome === "Resumo da Carol")) { pontosCarta -= 10; penalidadeString += "-10 (com Resumo da Carol). "; }
-                break;
-        }
+    // Bônus e Penalidades
+    let detalhesBonus = [];
+    let detalhesPenalidades = [];
 
-        // Aplicação de bônus e penalidades anuladas por coringas
-        if (temNaoPodeSerReal && penalidadeString.length > 0) {
-            pontosCarta = 0; // Anula a penalidade
-            penalidadeString = `Penalidade anulada por 'Não pode ser real'.`;
-        }
-        if (temPC_Richard && temCursoDeFormacao && penalidadeString.length > 0) {
-            pontosCarta = 0; // Anula a penalidade
-            penalidadeString = `Penalidade anulada por 'PC/Richard' com 'Curso de Formação'.`;
-        }
+    // Lógica de Bônus
+    if (nomesCartasValidos.includes("caretapool") && nomesCartasValidos.includes("cruelrine")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (CaretaPool + Cruelrine)");
+    }
+    if (nomesCartasValidos.includes("invadehouse") && nomesCartasValidos.includes("macaribe")) {
+        pontuacaoBonus += 20;
+        detalhesBonus.push("+20 (INVADE HOUSE + MaCaribe)");
+    }
+    if (nomesCartasValidos.includes("almocao") && nomesCartasValidos.includes("macaribe")) {
+        pontuacaoBonus += 20;
+        detalhesBonus.push("+20 (ALMOÇÃO + MaCaribe)");
+    }
+    if (nomesCartasValidos.includes("caôpixaba modelo") && acoesExternas.includes("fez a pose")) {
+        pontuacaoBonus += 25;
+        detalhesBonus.push("+25 (Caôpixaba Modelo + A Pose)");
+    }
+    if (nomesCartasValidos.includes("disney de janeiro") && (acoesExternas.includes("está de chinelo") || acoesExternas.includes("está tomando matte"))) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Disney de Janeiro + Chinelo ou Matte)");
+    }
+    if (nomesCartasValidos.includes("macaribe") && acoesExternas.includes("está de camiseta")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (MaCaribe + Camiseta)");
+    }
+    if (nomesCartasValidos.includes("vix em pó") && (acoesExternas.includes("está comendo caranguejo ou ter pó no pé/na roupa"))) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Vix em Pó + Ação Correspondente)");
+    }
+    if (nomesCartasValidos.includes("grande nordeste") && (acoesExternas.includes("está pegando sol") || acoesExternas.includes("está bebendo água"))) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Grande Nordeste + Pegando Sol ou Bebendo Água)");
+    }
+    if (nomesCartasValidos.includes("magnânimo") && acoesExternas.includes("fez uma acrobacia")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (MagnâniMO + Acrobacia)");
+    }
+    if (nomesCartasValidos.includes("número mágico") && acoesExternas.includes("não tentar um valor aproximado")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Número Mágico + Não tentar valor aproximado)");
+    }
+    // Adicione mais regras de bônus e penalidades aqui, seguindo a estrutura acima
 
-        if (pontosCarta !== 0) {
-            detalhes += `<p><strong>${carta.nome}</strong>: ${pontosCarta > 0 ? '+' : ''}${pontosCarta} (${bonusString}${penalidadeString}).</p>`;
-            if (pontosCarta > 0) bonusTotal += pontosCarta;
-            else penalidadeTotal += pontosCarta;
-        }
-    });
+    // Penalidades
+    if (nomesCartasValidos.includes("gasparzinho sundown") && !acoesExternas.includes("está com epi completo")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (sem EPI completo)");
+    }
+    if (nomesCartasValidos.includes("caôpixaba modelo") && !acoesExternas.includes("fez a pose")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Caôpixaba Modelo sem a pose)");
+    }
+    // Adicione mais penalidades aqui
 
-    detalhes += `<hr><p><strong>Total de Bônus: ${bonusTotal}</strong></p>`;
-    detalhes += `<p><strong>Total de Penalidades: ${penalidadeTotal}</strong></p>`;
+    resultadoHTML += `<br>Pontuação Base: ${pontuacaoBase}<br>`;
 
-    const pontuacaoFinal = pontuacaoBase + bonusTotal + penalidadeTotal;
-    detalhes += `<hr><h2>Pontuação Total: ${pontuacaoFinal} pontos</h2>`;
+    if (detalhesBonus.length > 0) {
+        resultadoHTML += `Total de Bônus: ${pontuacaoBonus} (${detalhesBonus.join('; ')}).<br>`;
+    } else {
+        resultadoHTML += `Total de Bônus: 0<br>`;
+    }
 
-    resultadoDiv.innerHTML = detalhes;
+    if (detalhesPenalidades.length > 0) {
+        resultadoHTML += `Total de Penalidades: ${pontuacaoPenalidade} (${detalhesPenalidades.join('; ')}).<br>`;
+    } else {
+        resultadoHTML += `Total de Penalidades: 0<br>`;
+    }
+
+    const pontuacaoTotal = pontuacaoBase + pontuacaoBonus + pontuacaoPenalidade;
+    resultadoHTML += `Pontuação Total: ${pontuacaoTotal} pontos`;
+
+    document.getElementById('resultado').innerHTML = resultadoHTML;
 }
