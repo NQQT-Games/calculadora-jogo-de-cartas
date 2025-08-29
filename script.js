@@ -109,7 +109,7 @@ const cartas = [
     { nome: "Gasparzinho Sundown", figura: "Luis Felipe Xavier Augusto de Oliveira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Filtro Solar. [P] -10 sem EPI completo.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "7" },
     { nome: "Mari-RUN-a", figura: "Mariana Mendes Guimaraes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 com qualquer Soninho.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "8" },
     { nome: "Cruelrine", figura: "Marcel Ramos Rangel", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com CaretaPool. [P] -10 com qualquer Soninho.", penalidades: "", tag: "", deck: "Verde", naipe: "Espadas", numero: "9" },
-    { nome: "Gerente Feedback Jr", figura: "Romilson Braga Teixeira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Itabomprai. [P] -10 sem EPI completo.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "2" },
+    { nome: "Gerente Feedback Jr", figura: "Romilson Braga Teixeira", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Itabomprai. [P] -10 sem EPI completo.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Ouros", numero: "2" },
     { nome: "New Saulo", figura: "Saulo de Souza Cunha", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Kit Churrasco. [P] -10 se precisar pegar Uber para cada Social.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "3" },
     { nome: "O Infiltrado", figura: "Pedro Felipi Tavares Prado", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Treinamento sem Convite. [P] -10 com Saco Preto.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "4" },
     { nome: "Camiseto", figura: "Pedro Henrique Regato Moutinho", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com cada Pai do Regato, Feliz Aniversário. [P] -10 se jogador não estiver de Bermuda e/ou Regata.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Ouros", numero: "5" },
@@ -135,7 +135,7 @@ const cartas = [
     { nome: "Atrasilda", figura: "Lais de Araujo Almeida", tipo: "Personagem", pontos: 20, bonus: "[B]  +5 para cada Mostra o RG ou Enquetes Everywhere. [P] -10 sem Cameraman.", penalidades: "", tag: "", deck: "Verde", naipe: "Ouros", numero: "9" },
     { nome: "CarioCúcho", figura: "Pedro Henrique Jardim Nunes", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 se jogador estiver sem chinelo e sem chimarrão.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "2" },
     { nome: "Olefinas", figura: "Pedro Paulo Barbosa Feitosa", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Pato Migratório. [P] -10 com Itabompraí.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "3" },
-    { nome: "Tranquilo?", figura: "Roberto Moreira Coelho da Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Disney de Janeiro. [P] -10 se o jogador não imitar o Personagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "4" },
+    { nome: "Tranquilo?", figura: "Roberto Moreira Coelho da Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se o jogador não imitar o Personagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "4" },
     { nome: "Esqueceram de Mim", figura: "Robson Alves Araujo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 se a carga do celular do jogador for >79%. [P] -10 se o jogador veio de ônibus de viagem.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "5" },
     { nome: "Zócolo na Caixeta", figura: "Thiago Campos Zocolo", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Piadas Devastadoras. [P] -10 com Perguntas sem Timing.", penalidades: "", tag: "Premium Care", deck: "Amarelo", naipe: "Paus", numero: "6" },
     { nome: "Jogador Colombiano", figura: "Tiago Resende Lucinda", tipo: "Personagem", pontos: 20, bonus: "[B] +20 com Contusão no Joelho. [P] -10 se o jogador nunca assistiu à série Narcos.", penalidades: "", tag: "", deck: "Amarelo", naipe: "Paus", numero: "7" },
@@ -155,7 +155,7 @@ const cartas = [
     { nome: "Mexido, Não Batido", figura: "Daniele Martini", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Nikiti na Panela. [P] -10 para cada Social.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "5" },
     { nome: "Shinobi Campista", figura: "Luiza Lisboa Naegele e Silva", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com outro Petrobanda. [P] -10 para cada Social", penalidades: "", tag: "Petrobanda", deck: "Verde", naipe: "Paus", numero: "6" },
     { nome: "General Trigus Aurelius", figura: "Marcus Vinicius dos Santos Lins", tipo: "Personagem", pontos: 20, bonus: "[B] +15 com Pão de Queijo e +5 com MaCaribe e Social. [P] -10 para cada Trigo.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "7" },
-    { nome: "PETagoga", figura: "Mariane Martins de Carvalho", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vereadora e +5 para cada Colheita Feliz, Shinobi Campista e PET.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "8" },
+    { nome: "PETagoga", figura: "Mariane Martins de Carvalho", tipo: "Personagem", pontos: 20, bonus: "[B] +10 com Vereadora e +5 para cada Colheita Feliz, Shinobi Campista e PET. [P] -10 para cada Social", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "8" },
     { nome: "Bibliotecário", figura: "Mateus Silva Duraes", tipo: "Personagem", pontos: 20, bonus: "[B] +50 com Biblioteca do EDIBH. [P] -10 com Resumo da Carol.", penalidades: "", tag: "", deck: "Verde", naipe: "Paus", numero: "9" }
 ];
 
@@ -186,7 +186,7 @@ function validarMao(nomesCartas) {
 
 function calcularPontuacao() {
     const inputCartas = document.getElementById('cartas-jogador').value;
-    const nomesCartasNaMao = inputCartas.split(',').map(nome => normalizarNome(nome.trim()));
+    const nomesCartasNaMao = inputCartas.split(/\r?\n/).map(nome => normalizarNome(nome.trim())).filter(nome => nome !== "");
     let resultadoHTML = "";
 
     const validacao = validarMao(nomesCartasNaMao);
@@ -269,26 +269,78 @@ function calcularPontuacao() {
         pontuacaoBonus += 10;
         detalhesBonus.push("+10 (Grande Nordeste + Pegando Sol ou Bebendo Água)");
     }
-    if (nomesCartasValidos.includes("magnânimo") && acoesExternas.includes("fez uma acrobacia")) {
+    if (nomesCartasValidos.includes("magnanimo") && acoesExternas.includes("fez uma acrobacia")) {
         pontuacaoBonus += 10;
         detalhesBonus.push("+10 (MagnâniMO + Acrobacia)");
     }
-    if (nomesCartasValidos.includes("número mágico") && acoesExternas.includes("não tentar um valor aproximado")) {
-        pontuacaoPenalidade -= 10;
-        detalhesPenalidades.push("-10 (Número Mágico + Não tentar valor aproximado)");
+    if (nomesCartasValidos.includes("tranquilo?") && acoesExternas.includes("imitou o personagem")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Tranquilo? + Imitou o Personagem)");
     }
-    // Adicione mais regras de bônus e penalidades aqui, seguindo a estrutura acima
+    if (nomesCartasValidos.includes("esqueceram de mim") && acoesExternas.includes("carga celular >79%")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Esqueceram de Mim + Carga do Celular)");
+    }
+    if (nomesCartasValidos.includes("max milhas") && acoesExternas.includes("cantou por ao menos 10s")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Max Milhas + Cantou por 10s)");
+    }
+    if (nomesCartasValidos.includes("skin care maromba") && acoesExternas.includes("treinou hoje")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Skin Care Maromba + Treinou Hoje)");
+    }
+    if (nomesCartasValidos.includes("a quem muitos amaro") && acoesExternas.includes("está com qualquer objeto na cor roxa")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (A Quem Muitos Amaro + Algo Roxo)");
+    }
+    if (nomesCartasValidos.includes("numero magico") && acoesExternas.includes("tentar um valor aproximado")) {
+        pontuacaoBonus += 10;
+        detalhesBonus.push("+10 (Número Mágico + Tentou Valor Aproximado)");
+    }
+
 
     // Penalidades
     if (nomesCartasValidos.includes("gasparzinho sundown") && !acoesExternas.includes("está com epi completo")) {
         pontuacaoPenalidade -= 10;
-        detalhesPenalidades.push("-10 (sem EPI completo)");
+        detalhesPenalidades.push("-10 (Gasparzinho Sundown sem EPI completo)");
     }
     if (nomesCartasValidos.includes("caôpixaba modelo") && !acoesExternas.includes("fez a pose")) {
         pontuacaoPenalidade -= 10;
         detalhesPenalidades.push("-10 (Caôpixaba Modelo sem a pose)");
     }
-    // Adicione mais penalidades aqui
+    if (nomesCartasValidos.includes("tranquilo?") && !acoesExternas.includes("imitou o personagem")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Tranquilo? sem imitar o personagem)");
+    }
+    if (nomesCartasValidos.includes("esqueceram de mim") && acoesExternas.includes("veio de onibus de viagem")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Esqueceram de Mim + Veio de ônibus)");
+    }
+    if (nomesCartasValidos.includes("max milhas") && !acoesExternas.includes("viajou nos ultimos/proximos 7 dias")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Max Milhas sem viajar)");
+    }
+    if (nomesCartasValidos.includes("skin care maromba") && !acoesExternas.includes("treinou hoje")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Skin Care Maromba sem treinar)");
+    }
+    if (nomesCartasValidos.includes("a quem muitos amaro") && !acoesExternas.includes("está com qualquer objeto na cor roxa")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (A Quem Muitos Amaro sem algo roxo)");
+    }
+    if (nomesCartasValidos.includes("numero magico") && !acoesExternas.includes("tentar um valor aproximado")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Número Mágico sem tentar valor aproximado)");
+    }
+    if (nomesCartasValidos.includes("magnanimo") && acoesExternas.includes("chorou no futebol")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (Magnânimo + Chorou no futebol)");
+    }
+    if (nomesCartasValidos.includes("cariochucho") && acoesExternas.includes("está sem chinelo e sem chimarrão")) {
+        pontuacaoPenalidade -= 10;
+        detalhesPenalidades.push("-10 (CarioCúcho + Sem chinelo e sem chimarrão)");
+    }
+
 
     resultadoHTML += `<br>Pontuação Base: ${pontuacaoBase}<br>`;
 
