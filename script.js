@@ -159,6 +159,7 @@ const cartas = [
 
 const acoes = [
     { id: "chinelo-ou-matte", nome: "Estou de chinelo ou tomando Matte" },
+    { id: "corpo-dagua-ou-corcovado", nome: "Estou vendo um grande Corpo de Água ou o Corcovado" },
     { id: "caranguejo-ou-po", nome: "Estou comendo caranguejo ou tenho pó no pé/na roupa" },
     { id: "sol-ou-agua", nome: "Estou pegando Sol ou bebendo Água" },
     { id: "camiseta", nome: "Estou de camiseta" },
@@ -193,8 +194,8 @@ function normalizarNome(nome) {
 
 function inicializarCalculadora() {
     const tipos = ["Coringa", "Personagem", "Item/Meme", "Evento", "Local"];
-    const decks = ["Branco", "Amarelo", "Verde"];
     const container = document.getElementById('card-selection-container');
+    const todosOsNomes = cartas.map(c => normalizarNome(c.nome));
 
     for (let i = 1; i <= 7; i++) {
         const cardSelectionDiv = document.createElement('div');
@@ -207,7 +208,6 @@ function inicializarCalculadora() {
         const typeSelect = document.createElement('select');
         typeSelect.id = `carta-${i}-tipo`;
         
-        // Adiciona a opção "Selecione o tipo..."
         const defaultOption = document.createElement('option');
         defaultOption.value = "";
         defaultOption.textContent = "Selecione o tipo...";
@@ -233,7 +233,6 @@ function inicializarCalculadora() {
         
         container.appendChild(cardSelectionDiv);
 
-        // Adiciona event listeners para encadear os selects
         typeSelect.addEventListener('change', () => {
             popularDeckSelect(deckSelect, typeSelect.value);
             cardSelect.disabled = true;
@@ -245,14 +244,29 @@ function inicializarCalculadora() {
         });
     }
 
+    // Configura os menus de cartas extras
+    ['item', 'personagem'].forEach(tipo => {
+        const extraSelect = document.getElementById(`extra-${tipo}-select`);
+        const cardsDoTipo = cartas.filter(c => c.tipo.toLowerCase().includes(tipo));
+        extraSelect.innerHTML = '<option value="">Nenhuma</option>';
+        cardsDoTipo.forEach(carta => {
+            const option = document.createElement('option');
+            option.value = normalizarNome(carta.nome);
+            option.textContent = carta.nome;
+            extraSelect.appendChild(option);
+        });
+    });
+
     popularChecklistAcoes();
 }
 
-
 function popularDeckSelect(deckSelect, tipo) {
-    const decks = ["Branco", "Amarelo", "Verde"];
     const cardsDoTipo = cartas.filter(c => c.tipo === tipo);
     const decksDisponiveis = [...new Set(cardsDoTipo.map(c => c.deck))];
+    const container = deckSelect.parentElement;
+
+    // Aplica a cor de fundo ao contêiner
+    container.className = `card-selection ${tipo.replace(/\//g, '-')}`;
     
     deckSelect.innerHTML = '<option value="">Selecione o deck...</option>';
     decksDisponiveis.forEach(deck => {
@@ -269,10 +283,17 @@ function popularCardSelect(cardSelect, tipo, deck) {
     const cardsDoDeck = cartas.filter(c => c.tipo === tipo && c.deck === deck);
     
     cardSelect.innerHTML = '<option value="">Selecione a carta...</option>';
+    
+    const cartasSelecionadas = Array.from(document.querySelectorAll('[id^="carta-"][id$="-nome"]')).map(select => select.value).filter(Boolean);
+
     cardsDoDeck.forEach(carta => {
         const option = document.createElement('option');
         option.value = normalizarNome(carta.nome);
         option.textContent = carta.nome;
+        // Desativa a opção se já foi selecionada
+        if (cartasSelecionadas.includes(normalizarNome(carta.nome))) {
+            option.disabled = true;
+        }
         cardSelect.appendChild(option);
     });
 
@@ -299,11 +320,38 @@ function popularChecklistAcoes() {
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarCalculadora();
+    // Re-popular os menus sempre que uma seleção muda para desativar duplicatas
+    document.getElementById('card-selection-container').addEventListener('change', (event) => {
+        if (event.target.id.endsWith('-nome')) {
+            for (let i = 1; i <= 7; i++) {
+                const cardSelect = document.getElementById(`carta-${i}-nome`);
+                if (cardSelect) {
+                    popularCardSelect(cardSelect, document.getElementById(`carta-${i}-tipo`).value, document.getElementById(`carta-${i}-deck`).value);
+                }
+            }
+        }
+    });
+
+    document.getElementById('extra-item-select').addEventListener('change', () => {
+        const extraItemContainer = document.getElementById('extra-card-selection-item');
+        extraItemContainer.classList.remove('Item-Meme');
+        if (document.getElementById('extra-item-select').value) {
+            extraItemContainer.classList.add('Item-Meme');
+        }
+    });
+
+    document.getElementById('extra-personagem-select').addEventListener('change', () => {
+        const extraPersonagemContainer = document.getElementById('extra-card-selection-personagem');
+        extraPersonagemContainer.classList.remove('Personagem');
+        if (document.getElementById('extra-personagem-select').value) {
+            extraPersonagemContainer.classList.add('Personagem');
+        }
+    });
 });
 
 function calcularPontuacao() {
-    const nomesCartasNaMao = [];
     const nomesCartasNaMaoNorm = [];
+    const nomesCartasNaMao = [];
     
     for (let i = 1; i <= 7; i++) {
         const cardSelect = document.getElementById(`carta-${i}-nome`);
@@ -316,12 +364,6 @@ function calcularPontuacao() {
     const resultadoDiv = document.getElementById('resultado');
     if (nomesCartasNaMao.length === 0) {
         resultadoDiv.innerHTML = "Por favor, selecione pelo menos uma carta.";
-        return;
-    }
-
-    const unicos = new Set(nomesCartasNaMaoNorm);
-    if (unicos.size !== nomesCartasNaMaoNorm.length) {
-        resultadoDiv.innerHTML = "Mão inválida. Cartas duplicadas não são permitidas.";
         return;
     }
 
@@ -347,14 +389,13 @@ function calcularPontuacao() {
     
     const acoesExternas = Array.from(document.querySelectorAll('#acoes-jogador-checklist input[type="checkbox"]:checked')).map(checkbox => checkbox.dataset.acao.toLowerCase());
 
-    // Regras Especiais para Cartas Extras
     let cartaExtraItem = null;
     let cartaExtraPersonagem = null;
 
     if (nomesCartasNaMaoNorm.includes("mochila petrobras")) {
         const extraItemSelect = document.getElementById('extra-item-select');
         const extraItemNome = extraItemSelect.options[extraItemSelect.selectedIndex].text;
-        if (extraItemNome) {
+        if (extraItemNome && extraItemNome !== "Nenhuma") {
             cartaExtraItem = cartas.find(c => normalizarNome(c.nome) === normalizarNome(extraItemNome));
             if (cartaExtraItem) {
                 pontuacaoBase += cartaExtraItem.pontos;
@@ -366,7 +407,7 @@ function calcularPontuacao() {
     if (nomesCartasNaMaoNorm.includes("t5 honorario")) {
         const extraPersonagemSelect = document.getElementById('extra-personagem-select');
         const extraPersonagemNome = extraPersonagemSelect.options[extraPersonagemSelect.selectedIndex].text;
-        if (extraPersonagemNome) {
+        if (extraPersonagemNome && extraPersonagemNome !== "Nenhuma") {
             cartaExtraPersonagem = cartas.find(c => normalizarNome(c.nome) === normalizarNome(extraPersonagemNome));
             if (cartaExtraPersonagem) {
                 pontuacaoBase += cartaExtraPersonagem.pontos;
@@ -374,71 +415,64 @@ function calcularPontuacao() {
             }
         }
     }
-
-
-    // Lógica principal de cálculo
+    
+    // Mostra/esconde menus de cartas extras
+    document.getElementById('extra-card-selection-item').classList.toggle('hidden', !nomesCartasNaMaoNorm.includes("mochila petrobras"));
+    document.getElementById('extra-card-selection-personagem').classList.toggle('hidden', !nomesCartasNaMaoNorm.includes("t5 honorario"));
+    
     cartasNaMao.forEach(carta => {
         pontuacaoBase += carta.pontos;
 
-        // Lógica de Bônus e Penalidades (mantida e corrigida)
-        // Por exemplo, a lógica para "Caôpixaba Modelo"
+        // BÔNUS
         if (normalizarNome(carta.nome) === "caôpixaba modelo") {
             if (nomesCartasNaMaoNorm.includes("vix em pó")) {
                 if (nomesCartasNaMaoNorm.includes("macaribe")) {
-                    pontuacaoBonus += 35;
-                    detalhesBonus.push("+35 (Caôpixaba Modelo + Vix em Pó + MaCaribe)");
+                    pontuacaoBonus += 25;
+                    detalhesBonus.push("+25 (Caôpixaba Modelo + Vix em Pó E MaCaribe)");
                 } else {
                     pontuacaoBonus += 10;
                     detalhesBonus.push("+10 (Caôpixaba Modelo + Vix em Pó)");
                 }
             }
+        }
+
+        // PENALIDADES
+        if (normalizarNome(carta.nome) === "caôpixaba modelo") {
             if (!acoesExternas.includes("fez a pose")) {
                 pontuacaoPenalidade -= 10;
                 detalhesPenalidades.push("-10 (Caôpixaba Modelo sem a pose)");
             }
         }
+        
         // ... (Adicionar as lógicas para todas as outras cartas aqui)
     });
     
-    // ... Lógica de penalidades e bônus que dependem do conjunto de cartas (count, etc)
-    
-    // Exibição dos resultados
     let resultadoHTML = "<h2>Resultados</h2>";
-    resultadoHTML += "Mão válida. Calculando...<br><br>";
 
-    resultadoHTML += "<h3>Pontuação por Cartas</h3>";
-    cartasNaMao.forEach(carta => {
-        resultadoHTML += `<strong>${carta.nome}</strong>: ${carta.pontos} pontos base.<br>`;
-    });
+    resultadoHTML += `<h3>Pontuação Base: ${pontuacaoBase}</h3>`;
     
-    if (cartaExtraItem) {
-        resultadoHTML += `<strong>${cartaExtraItem.nome}</strong>: ${cartaExtraItem.pontos} pontos (Carta Extra).<br>`;
-    }
-    if (cartaExtraPersonagem) {
-        resultadoHTML += `<strong>${cartaExtraPersonagem.nome}</strong>: ${cartaExtraPersonagem.pontos} pontos (Carta Extra).<br>`;
-    }
-
-    resultadoHTML += `<hr>Pontuação Base: ${pontuacaoBase}<br>`;
-
+    let totalBonus = 0;
     if (detalhesBonus.length > 0) {
-        const totalBonus = detalhesBonus.reduce((sum, item) => sum + parseInt(item.match(/[-+]?\d+/)[0]), 0);
-        resultadoHTML += `Total de Bônus: ${totalBonus} (${detalhesBonus.join('; ')}).<br>`;
-    } else {
-        resultadoHTML += `Total de Bônus: 0<br>`;
+        totalBonus = detalhesBonus.reduce((sum, item) => sum + parseInt(item.match(/[-+]?\d+/)[0]), 0);
+        resultadoHTML += `<h3>Bônus: ${totalBonus}</h3>`;
+        detalhesBonus.forEach(detalhe => {
+            resultadoHTML += `<p>${detalhe}</p>`;
+        });
     }
 
+    let totalPenalidades = 0;
     if (detalhesPenalidades.length > 0) {
-        const totalPenalidades = detalhesPenalidades.reduce((sum, item) => sum + parseInt(item.match(/[-+]?\d+/)[0]), 0);
-        resultadoHTML += `Total de Penalidades: ${totalPenalidades} (${detalhesPenalidades.join('; ')}).<br>`;
-    } else {
-        resultadoHTML += `Total de Penalidades: 0<br>`;
+        totalPenalidades = detalhesPenalidades.reduce((sum, item) => sum + parseInt(item.match(/[-+]?\d+/)[0]), 0);
+        resultadoHTML += `<h3>Penalidades: ${totalPenalidades}</h3>`;
+        detalhesPenalidades.forEach(detalhe => {
+            resultadoHTML += `<p>${detalhe}</p>`;
+        });
     }
 
     const pontuacaoTotal = pontuacaoBase + pontuacaoBonus + pontuacaoPenalidade;
-    resultadoHTML += `<br>Pontuação Total: <strong>${pontuacaoTotal} pontos</strong>`;
+    resultadoHTML += `<hr><h2>Pontuação Total: ${pontuacaoTotal} pontos</h2>`;
 
     document.getElementById('resultado').innerHTML = resultadoHTML;
 }
 
-// Inicializa a calculadora ao carregar a página
 inicializarCalculadora();
