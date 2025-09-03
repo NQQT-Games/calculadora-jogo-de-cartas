@@ -187,15 +187,10 @@ const acoes = [
 ];
 
 
-function normalizarNome(nome) {
-    if (!nome) return '';
-    return nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "");
-}
-
 function inicializarCalculadora() {
     const tipos = ["Coringa", "Personagem", "Item/Meme", "Evento", "Local"];
     const container = document.getElementById('card-selection-container');
-    const todosOsNomes = cartas.map(c => normalizarNome(c.nome));
+    const todosOsNomes = cartas.map(c => c.nome);
 
     for (let i = 1; i <= 7; i++) {
         const cardSelectionDiv = document.createElement('div');
@@ -209,6 +204,7 @@ function inicializarCalculadora() {
         typeSelect.id = `carta-${i}-tipo`;
         
         const defaultOption = document.createElement('option');
+    
         defaultOption.value = "";
         defaultOption.textContent = "Selecione o tipo...";
         typeSelect.appendChild(defaultOption);
@@ -251,7 +247,7 @@ function inicializarCalculadora() {
         extraSelect.innerHTML = '<option value="">Nenhuma</option>';
         cardsDoTipo.forEach(carta => {
             const option = document.createElement('option');
-            option.value = normalizarNome(carta.nome);
+            option.value = carta.nome;
             option.textContent = carta.nome;
             extraSelect.appendChild(option);
         });
@@ -288,10 +284,10 @@ function popularCardSelect(cardSelect, tipo, deck) {
 
     cardsDoDeck.forEach(carta => {
         const option = document.createElement('option');
-        option.value = normalizarNome(carta.nome);
+        option.value = carta.nome;
         option.textContent = carta.nome;
         // Desativa a opção se já foi selecionada
-        if (cartasSelecionadas.includes(normalizarNome(carta.nome))) {
+        if (cartasSelecionadas.includes(carta.nome)) {
             option.disabled = true;
         }
         cardSelect.appendChild(option);
@@ -350,14 +346,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function calcularPontuacao() {
-    const nomesCartasNaMaoNorm = [];
     const nomesCartasNaMao = [];
     
     for (let i = 1; i <= 7; i++) {
         const cardSelect = document.getElementById(`carta-${i}-nome`);
         if (cardSelect && cardSelect.value) {
-            nomesCartasNaMao.push(cardSelect.options[cardSelect.selectedIndex].text);
-            nomesCartasNaMaoNorm.push(cardSelect.value);
+            nomesCartasNaMao.push(cardSelect.value);
         }
     }
     
@@ -367,7 +361,7 @@ function calcularPontuacao() {
         return;
     }
 
-    const cartasNaMao = nomesCartasNaMaoNorm.map(nome => cartas.find(c => normalizarNome(c.nome) === nome));
+    const cartasNaMao = nomesCartasNaMao.map(nome => cartas.find(c => c.nome === nome));
     
     let pontuacaoBase = 0;
     let pontuacaoBonus = 0;
@@ -392,11 +386,11 @@ function calcularPontuacao() {
     let cartaExtraItem = null;
     let cartaExtraPersonagem = null;
 
-    if (nomesCartasNaMaoNorm.includes("mochila petrobras")) {
+    if (nomesCartasNaMao.includes("Mochila Petrobras")) {
         const extraItemSelect = document.getElementById('extra-item-select');
-        const extraItemNome = extraItemSelect.options[extraItemSelect.selectedIndex].text;
-        if (extraItemNome && extraItemNome !== "Nenhuma") {
-            cartaExtraItem = cartas.find(c => normalizarNome(c.nome) === normalizarNome(extraItemNome));
+        const extraItemNome = extraItemSelect.value;
+        if (extraItemNome) {
+            cartaExtraItem = cartas.find(c => c.nome === extraItemNome);
             if (cartaExtraItem) {
                 pontuacaoBase += cartaExtraItem.pontos;
                 detalhesBonus.push(`+${cartaExtraItem.pontos} (Mochila Petrobras - Carta extra: ${cartaExtraItem.nome})`);
@@ -404,11 +398,11 @@ function calcularPontuacao() {
         }
     }
 
-    if (nomesCartasNaMaoNorm.includes("t5 honorario")) {
+    if (nomesCartasNaMao.includes("T5 Honorário")) {
         const extraPersonagemSelect = document.getElementById('extra-personagem-select');
-        const extraPersonagemNome = extraPersonagemSelect.options[extraPersonagemSelect.selectedIndex].text;
-        if (extraPersonagemNome && extraPersonagemNome !== "Nenhuma") {
-            cartaExtraPersonagem = cartas.find(c => normalizarNome(c.nome) === normalizarNome(extraPersonagemNome));
+        const extraPersonagemNome = extraPersonagemSelect.value;
+        if (extraPersonagemNome) {
+            cartaExtraPersonagem = cartas.find(c => c.nome === extraPersonagemNome);
             if (cartaExtraPersonagem) {
                 pontuacaoBase += cartaExtraPersonagem.pontos;
                 detalhesBonus.push(`+${cartaExtraPersonagem.pontos} (T5 Honorário - Carta extra: ${cartaExtraPersonagem.nome})`);
@@ -417,16 +411,16 @@ function calcularPontuacao() {
     }
     
     // Mostra/esconde menus de cartas extras
-    document.getElementById('extra-card-selection-item').classList.toggle('hidden', !nomesCartasNaMaoNorm.includes("mochila petrobras"));
-    document.getElementById('extra-card-selection-personagem').classList.toggle('hidden', !nomesCartasNaMaoNorm.includes("t5 honorario"));
+    document.getElementById('extra-card-selection-item').classList.toggle('hidden', !nomesCartasNaMao.includes("Mochila Petrobras"));
+    document.getElementById('extra-card-selection-personagem').classList.toggle('hidden', !nomesCartasNaMao.includes("T5 Honorário"));
     
     cartasNaMao.forEach(carta => {
         pontuacaoBase += carta.pontos;
 
         // BÔNUS
-        if (normalizarNome(carta.nome) === "caôpixaba modelo") {
-            if (nomesCartasNaMaoNorm.includes("vix em pó")) {
-                if (nomesCartasNaMaoNorm.includes("macaribe")) {
+        if (carta.nome === "Caôpixaba Modelo") {
+            if (nomesCartasNaMao.includes("Vix em Pó")) {
+                if (nomesCartasNaMao.includes("MaCaribe")) {
                     pontuacaoBonus += 25;
                     detalhesBonus.push("+25 (Caôpixaba Modelo + Vix em Pó E MaCaribe)");
                 } else {
@@ -437,7 +431,7 @@ function calcularPontuacao() {
         }
 
         // PENALIDADES
-        if (normalizarNome(carta.nome) === "caôpixaba modelo") {
+        if (carta.nome === "Caôpixaba Modelo") {
             if (!acoesExternas.includes("fez a pose")) {
                 pontuacaoPenalidade -= 10;
                 detalhesPenalidades.push("-10 (Caôpixaba Modelo sem a pose)");
