@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Pontuação - Jogo da T5</title>
+    <title>Jogo da T5 - Calculadora de Pontuação</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Calculadora de Pontuação - Jogo da T5</h1>
+    <div class="container">
+        <h1>Calculadora de Pontuação - T5</h1>
 
-    <div id="card-selection-container">
+        <div class="secao">
+            <h2>Sua Mão</h2>
+            <p>Selecione suas cartas:</p>
+            <div id="cartas-selecao" class="cartas-grid">
+                </div>
         </div>
 
-    <div id="extra-card-selection-item" class="card-selection hidden">
-        <label>Carta extra da Mochila Petrobras:</label>
-        <select id="extra-item-select"></select>
-    </div>
-
-    <div id="extra-card-selection-personagem" class="card-selection hidden">
-        <label>Carta extra do T5 Honorário:</label>
-        <select id="extra-personagem-select"></select>
-    </div>
-
-    <h3>Ações do Jogador</h3>
-    <div id="acoes-jogador-checklist">
+        <div class="secao">
+            <h2>Ações Realizadas</h2>
+            <p>Selecione as ações que você fez durante o jogo:</p>
+            <div id="acoes-selecao" class="acoes-lista">
+                </div>
         </div>
 
-    <button onclick="calcularPontuacao()">Calcular Pontuação</button>
+        <div class="secao">
+            <button id="calcular-btn">Calcular Pontuação</button>
+            <div id="resultado-pontuacao">
+                <h3>Sua Pontuação:</h3>
+                <span id="pontos">0</span> pontos
+            </div>
+        </div>
 
-    <hr>
-    
-    <div id="resultado">
-        Aguardando cálculo...
     </div>
 
     <script src="logicas.js"></script>
-    <script src="script.js"></script>
-
+    <script src="app.js"></script>
 </body>
 </html>
-
