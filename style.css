@@ -1,4 +1,4 @@
-/* Esquema de Cores do Jogo T5 */
+/* Esquema de Cores do Jogo T5 - Contraste Otimizado */
 :root {
     --fundo-geral: #08293b;
     --azul-escuro: #061c27;
@@ -7,10 +7,10 @@
     --cinza-claro: #bdc3c7;
 
     /* Cores das Cartas */
-    --cor-personagem: #e67e22; /* Laranja */
-    --cor-local: #3498db;     /* Azul */
-    --cor-item: #2ecc71;      /* Verde */
-    --cor-evento: #f1c40f;    /* Amarelo */
+    --cor-personagem: #d35400; /* Laranja mais escuro */
+    --cor-local: #3498db;     /* Azul - agora com texto preto */
+    --cor-item: #27ae60;      /* Verde mais escuro */
+    --cor-evento: #f39c12;    /* Amarelo mais escuro */
 
     /* Cor de Seleção */
     --cor-selecionado: #b3ff00; /* Verde-limão */
@@ -93,9 +93,9 @@ input[type="checkbox"] {
 }
 
 /* Estilo para o rótulo da carta de acordo com o seu tipo */
-.tipo-personagem { background-color: var(--cor-personagem); color: var(--preto); }
+.tipo-personagem { background-color: var(--cor-personagem); color: var(--branco); }
 .tipo-local { background-color: var(--cor-local); color: var(--branco); }
-.tipo-item-meme { background-color: var(--cor-item); color: var(--preto); }
+.tipo-item-meme { background-color: var(--cor-item); color: var(--branco); }
 .tipo-evento { background-color: var(--cor-evento); color: var(--preto); }
 
 /* Estilo para a ação selecionada */
@@ -115,12 +115,12 @@ input[type="checkbox"]:checked + .card-label {
     opacity: 0.85;
 }
 
+/* Ajuste de cor para o texto "small" */
 small {
-    color: var(--preto);
+    color: rgba(255, 255, 255, 0.7);
 }
-
-.tipo-local small {
-    color: var(--branco);
+.tipo-evento small {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 #resultado-pontuacao {
