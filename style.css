@@ -1,47 +1,159 @@
+/* Esquema de Cores do Jogo T5 */
+:root {
+    --fundo-geral: #08293b;
+    --azul-escuro: #061c27;
+    --preto: #2c3e50;
+    --branco: #ecf0f1;
+    --cinza-claro: #bdc3c7;
+
+    /* Cores das Cartas */
+    --cor-personagem: #e67e22; /* Laranja */
+    --cor-local: #3498db;     /* Azul */
+    --cor-item: #2ecc71;      /* Verde */
+    --cor-evento: #f1c40f;    /* Amarelo */
+
+    /* Cor de Seleção */
+    --cor-selecionado: #b3ff00; /* Verde-limão */
+    --borda-selecionado: #5a7f05;
+}
+
 body {
-    font-family: sans-serif;
-    max-width: 600px;
-    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    background-color: var(--fundo-geral);
+    color: var(--branco);
+    margin: 0;
     padding: 20px;
-}
-
-.card-selection {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.card-selection select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-}
-
-.card-selection label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.card-type-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--azul-escuro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--branco);
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--cinza-claro);
+    border-bottom: 1px solid var(--fundo-geral);
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+/* Estilo para as seções */
+.secao {
+    margin-bottom: 30px;
+}
+
+/* Layout das grades de seleção */
+.cartas-grid,
+.acoes-lista {
+    display: grid;
     gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
-.type-label {
-    font-size: 1.1em;
+.carta-item,
+.acao-item {
+    position: relative;
+}
+
+/* Oculta o checkbox padrão */
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Estilo para os rótulos */
+.card-label,
+.acao-label {
+    display: block;
+    background-color: var(--cinza-claro);
+    color: var(--preto);
+    border: 1px solid var(--fundo-geral);
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+/* Estilo para o rótulo da carta de acordo com o seu tipo */
+.tipo-personagem { background-color: var(--cor-personagem); color: var(--preto); }
+.tipo-local { background-color: var(--cor-local); color: var(--branco); }
+.tipo-item-meme { background-color: var(--cor-item); color: var(--preto); }
+.tipo-evento { background-color: var(--cor-evento); color: var(--preto); }
+
+/* Estilo para a ação selecionada */
+input[type="checkbox"]:checked + .acao-label {
+    background-color: var(--cor-selecionado);
+    border-color: var(--borda-selecionado);
+    box-shadow: 0 0 8px rgba(179, 255, 0, 0.7);
+}
+
+/* Estilo para a carta selecionada */
+input[type="checkbox"]:checked + .card-label {
+    box-shadow: 0 0 8px rgba(179, 255, 0, 0.7);
+}
+
+.card-label:hover,
+.acao-label:hover {
+    opacity: 0.85;
+}
+
+small {
+    color: var(--preto);
+}
+
+.tipo-local small {
+    color: var(--branco);
+}
+
+#resultado-pontuacao {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#pontos {
+    font-size: 3em;
     font-weight: bold;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 15px;
+    color: var(--cor-selecionado);
+    margin-top: 10px;
+    display: block;
 }
 
-.Personagem { background-color: #4CAF50; }
-.Local { background-color: #FF9800; }
-.Item-Meme { background-color: #FFEB3B; color: black; }
-.Evento { background-color: #03A9F4; }
-.Coringa { background-color: #E91E63; }
-.hidden { display: none; }
+#calcular-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--cor-selecionado);
+    color: var(--preto);
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#calcular-btn:hover {
+    background-color: #c9ff4d;
+}
+
+#calcular-btn:active {
+    background-color: #8ce600;
+}
