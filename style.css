@@ -8,7 +8,7 @@
 
     /* Cores das Cartas */
     --cor-personagem: #d35400; /* Laranja mais escuro */
-    --cor-local: #3498db;     /* Azul - agora com texto preto */
+    --cor-local: #3498db;     /* Azul */
     --cor-item: #27ae60;      /* Verde mais escuro */
     --cor-evento: #f39c12;    /* Amarelo mais escuro */
 
@@ -82,14 +82,17 @@ input[type="checkbox"] {
 .card-label,
 .acao-label {
     display: block;
-    background-color: var(--cinza-claro);
-    color: var(--preto);
     border: 1px solid var(--fundo-geral);
     border-radius: 6px;
     padding: 10px 15px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
+    
+    /* Correção para nomes longos */
+    word-wrap: break-word;
+    white-space: normal;
+    font-size: 0.95em;
 }
 
 /* Estilo para o rótulo da carta de acordo com o seu tipo */
@@ -107,7 +110,11 @@ input[type="checkbox"]:checked + .acao-label {
 
 /* Estilo para a carta selecionada */
 input[type="checkbox"]:checked + .card-label {
+    background-color: var(--cor-selecionado);
+    border-color: var(--borda-selecionado);
     box-shadow: 0 0 8px rgba(179, 255, 0, 0.7);
+    transform: scale(1.05); /* Efeito de zoom ao selecionar */
+    color: var(--preto);
 }
 
 .card-label:hover,
@@ -119,7 +126,9 @@ input[type="checkbox"]:checked + .card-label {
 small {
     color: rgba(255, 255, 255, 0.7);
 }
-.tipo-evento small {
+
+.tipo-evento small,
+input[type="checkbox"]:checked + .card-label small {
     color: rgba(0, 0, 0, 0.7);
 }
 
@@ -157,3 +166,4 @@ small {
 #calcular-btn:active {
     background-color: #8ce600;
 }
+
