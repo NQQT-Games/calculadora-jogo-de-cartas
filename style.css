@@ -11,6 +11,7 @@
     --cor-local: #3498db;     /* Azul */
     --cor-item: #27ae60;      /* Verde mais escuro */
     --cor-evento: #f39c12;    /* Amarelo mais escuro */
+    --cor-coringa: #9b59b6;   /* Roxo para Coringa */
 
     /* Cor de Seleção */
     --cor-selecionado: #b3ff00; /* Verde-limão */
@@ -61,7 +62,8 @@ h2 {
 .acoes-lista {
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    /* Ajuste para melhor espaçamento em nomes longos */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
 .carta-item,
@@ -74,8 +76,11 @@ input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: 100%; /* Garante que o input escondido cubra toda a área do item */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 /* Estilo para os rótulos */
@@ -93,6 +98,8 @@ input[type="checkbox"] {
     word-wrap: break-word;
     white-space: normal;
     font-size: 0.95em;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura */
+    box-sizing: border-box; /* Inclui padding e border na altura */
 }
 
 /* Estilo para o rótulo da carta de acordo com o seu tipo */
@@ -100,6 +107,7 @@ input[type="checkbox"] {
 .tipo-local { background-color: var(--cor-local); color: var(--branco); }
 .tipo-item-meme { background-color: var(--cor-item); color: var(--branco); }
 .tipo-evento { background-color: var(--cor-evento); color: var(--preto); }
+.tipo-coringa { background-color: var(--cor-coringa); color: var(--branco); }
 
 /* Estilo para a ação selecionada */
 input[type="checkbox"]:checked + .acao-label {
@@ -110,7 +118,6 @@ input[type="checkbox"]:checked + .acao-label {
 
 /* Estilo para a carta selecionada */
 input[type="checkbox"]:checked + .card-label {
-    background-color: var(--cor-selecionado);
     border-color: var(--borda-selecionado);
     box-shadow: 0 0 8px rgba(179, 255, 0, 0.7);
     transform: scale(1.05); /* Efeito de zoom ao selecionar */
@@ -127,7 +134,10 @@ small {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.tipo-evento small,
+.tipo-evento small {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 input[type="checkbox"]:checked + .card-label small {
     color: rgba(0, 0, 0, 0.7);
 }
@@ -166,4 +176,3 @@ input[type="checkbox"]:checked + .card-label small {
 #calcular-btn:active {
     background-color: #8ce600;
 }
-
